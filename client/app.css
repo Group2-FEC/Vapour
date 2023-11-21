@@ -1,0 +1,23 @@
+body {
+  margin: 0;
+}
+
+.main {
+  padding: 8px;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  border: 1px solid black;
+  padding: 2px;
+  max-width: 200px;
+}
+
+.task + .task {
+  margin-top: 4px;
+}
+
+.task > * + * {
+  margin-left: 4px;
+}
