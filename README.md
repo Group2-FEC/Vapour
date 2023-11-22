@@ -1,40 +1,62 @@
-# Full-Stack React Example
+# Steam Video Game Clone
 
-This repo contains an example of a full-stack application with an express backend and a React frontend.
+## Overview
 
-It uses vite as the module bundler and dotenv for configuration. It's organized as a mono-repo using [npm workspaces](https://docs.npmjs.com/cli/v7/using-npm/workspaces) which allows us to have our client and server in one repo.
+This project is a Steam video game clone developed using JavaScript and React. It utilizes the RAWG API to fetch and display game data. The goal is to create a user-friendly interface that mimics the Steam platform for browsing and discovering video games.
 
-> **Note**: When you run `npm install` at the root, it will install all dependencies listed in `package.json`, `server/package.json`, and `client/package.json`.
+## Features
 
-## Customizing the Template
+- Browse a curated list of games
+- Search for specific games
+- View detailed information about each game
+- Favorite and save games for future reference
+- User authentication (optional)
 
-1. Create new repo using this one as a template.
-1. Pull that repo down.
-1. Update `./server/migration.sql` to the schema for your application.
+## Screenshots
 
-## Development Setup
+<!-- Add screenshots of your application -->
 
-1. Install dependencies: `npm install`
-1. Create your database: `createdb YOUR_DB`
-1. Run your migrations: `psql -f server/migration.sql YOUR_DB`
-1. Create your `.env` file: `cp .env.template .env`
-1. Add your info in `.env`
-1. Run the app: `npm run dev`
+## Getting Started
 
-## Scripts
+To get started with the project, follow these steps:
 
-**Root**
+1. Clone the repository to your local machine.
+   git clone https://github.com/your-username/steam-clone.git
 
-- `npm run dev` - Runs the API server and hosts your frontend assets.
-- `npm run dev:server` - Runs the API server in watch mode.
-- `npm run dev:client` - Hosts your frontend assets.
+2. Install dependencies.
+   cd steam-clone
+   npm install
 
-**/client**
+3. Create a `.env` file in the root of the project and add your RAWG API key.
+   REACT_APP_RAWG_API_KEY= ee8d0e7a9dab4d5a9e92bcd94ca0406a
 
-- `npm run dev` - Hosts your assets.
-- `npm run build` - Builds your assets (mainly used in CI/CD).
+4. Start the development server.
 
-**/server**
+5. Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
 
-- `npm run dev` - Runs the server in watch mode.
-- `npm run start` - Starts the server (mainly used when deploying).
+## Technologies Used
+
+- JavaScript
+- React
+- RAWG API
+
+## API Key
+
+To use this project, you'll need to obtain an API key from RAWG. Visit [RAWG API](https://rawg.io/apidocs) to get your API key.
+
+## Contributing
+
+If you'd like to contribute to the project, please follow our [Contribution Guidelines](CONTRIBUTING.md).
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+## Acknowledgments
+
+- Thanks to RAWG for providing the API used in this project.
+- Inspiration from the Steam platform.
+
+## Contact
+
+For any inquiries, please contact [Greg].
