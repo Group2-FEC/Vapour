@@ -1,3 +1,35 @@
+import express from "express";
+import pg from "pg";
+import dotenv from "dotenv";
+
+dotenv.config({ path: "../.env" });
+
+const { PORT, DATABASE_URL } = process.env;
+
+const client = new pg.Client({
+  connectionString: DATABASE_URL,
+});
+
+await client.connect();
+
+const app = express();
+
+app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.send("Steam Page");
+});
+
+app.get("/api/videogames", (req, res, next) => {
+  client.query("SELECT * FROM videogames")
+    .then((rows) => {
+      res.send(rows);
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
 app.post("/api/videogames", (req, res, next) => {
   const { name, age_rating, genre, rating } = req.body;
   client.query(
@@ -37,6 +69,7 @@ app.patch("/api/videogames/:id", (req, res, next) => {
       next(err);
     });
 });
+
 
 app.delete("/api/videogames/:id", (req, res, next) => {
   const id = Number(req.params.id);
