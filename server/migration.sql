@@ -1,12 +1,11 @@
-DROP TABLE IF EXISTS tasks;
+DROP TABLE IF EXISTS videogames;
 
-CREATE TABLE tasks (
-  id SERIAL,
-  description TEXT
+CREATE TABLE videogames (
+  id SERIAL PRIMARY KEY,
+  name TEXT,
+  age_rating TEXT,
+  genre TEXT,
+  rating INT
 );
 
-INSERT INTO tasks(description) VALUES('Do the dishes');
-INSERT INTO tasks(description) VALUES('Walk the dog');
-INSERT INTO tasks(description) VALUES('Sweep the floor');
-INSERT INTO tasks(description) VALUES('Do your homework');
-INSERT INTO tasks(description) VALUES('Beat Elden Ring');
+INSERT INTO videogames(name, age_rating, genre, rating) VALUES('Halo', 'M', 'FPS', '92');
