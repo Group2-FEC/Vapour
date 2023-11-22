@@ -33,7 +33,7 @@ app.post("/api/videogames", (req, res) => {
     [name, age_rating, genre, rating]
     )
     .then((data) => {
-      res.json(data.rows[0]);
+      res.status(201).res.json(data.rows[0]);
     })
     .catch((error) => {
       console.error("Error creating videogame: ", error);
