@@ -5,7 +5,7 @@ import axios from "axios";
 
 dotenv.config({ path: "../.env" });
 
-const { PORT, DATABASE_URL } = process.env;
+const { PORT, DATABASE_URL, API_KEY } = process.env;
 
 const client = new pg.Client({
   connectionString: DATABASE_URL,
@@ -23,7 +23,7 @@ app.get("/", (req, res) => {
 
 app.get("/games", async (req, res, next) => {
   try {
-    const response = await axios.get("https://api.rawg.io/api/games?key=ee8d0e7a9dab4d5a9e92bcd94ca0406a&ordering=-added&page_size=10");
+    const response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&ordering=-added&page_size=10`);
     const games = response.data.results;
     res.json({ games });
   } catch (error) {
@@ -34,7 +34,7 @@ app.get("/games", async (req, res, next) => {
 // Upcoming releases
 app.get("/upcoming", async (req, res, next) => {
   try {
-    const response = await axios.get("https://api.rawg.io/api/games?key=ee8d0e7a9dab4d5a9e92bcd94ca0406a&dates=2023-12-01,2023-12-31&ordering=-released&page_size=10");
+    const response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&dates=2023-12-01,2023-12-31&ordering=-released&page_size=10`);
     const upcomingGames = response.data.results;
     res.json({ upcomingGames });
   } catch (error) {
