@@ -1,28 +1,22 @@
 {
-  "name": "full-stack-react",
-  "version": "1.0.0",
-  "type": "module",
-  "workspaces": [
-    "server",
-    "client"
-  ],
-  "scripts": {
-    "dev": "concurrently \"npm:dev:*\"",
-    "dev:client": "npm run dev --workspace=client",
-    "dev:server": "npm run dev --workspace=server",
-    "lint": "prettier . --check"
-  },
-  "devDependencies": {
-    "concurrently": "^8.2.2",
-    "prettier": "^3.1.0"
-  },
-  "dependencies": {
-    "@react-three/drei": "^9.88.17",
-    "@react-three/fiber": "^8.15.11",
-    "axios": "^1.6.2",
-    "dotenv": "^16.3.1",
-    "pg": "^8.11.3",
-    "react": "^18.2.0",
-    "three": "^0.158.0"
-  }
+	"name": "full-stack-react",
+	"version": "1.0.0",
+	"type": "module",
+	"workspaces": [
+		"server",
+		"client"
+	],
+	"scripts": {
+		"dev": "concurrently \"npm:dev:*\"",
+		"dev:client": "npm run dev --workspace=client",
+		"dev:server": "npm run dev --workspace=server",
+		"lint": "prettier . --check"
+	},
+	"devDependencies": {
+		"concurrently": "^8.2.2",
+		"prettier": "^3.1.0"
+	},
+	"dependencies": {
+		"dotenv": "^16.3.1"
+	}
 }
