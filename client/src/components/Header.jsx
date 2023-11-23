@@ -48,7 +48,7 @@ const Header = () => {
 
 				<p
 					id="wishlist"
-					className="text-right rounded-b w-5/6 text-white font-bold uppercase"
+					className="text-right rounded-b w-5/6 text-white font-bold uppercase pb-1"
 				>
 					WISHLIST(69)
 				</p>
