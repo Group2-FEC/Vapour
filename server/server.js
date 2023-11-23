@@ -1,6 +1,7 @@
 import express from "express";
 import pg from "pg";
 import dotenv from "dotenv";
+import axios from "axios";
 
 dotenv.config({ path: "../.env" });
 
@@ -20,14 +21,25 @@ app.get("/", (req, res) => {
   res.send("Steam Page");
 });
 
-app.get("/api/videogames", (req, res, next) => {
-  client.query("SELECT * FROM videogames")
-    .then((rows) => {
-      res.send(rows);
-    })
-    .catch((error) => {
-      next(error);
-    });
+app.get("/games", async (req, res, next) => {
+  try {
+    const response = await axios.get("https://api.rawg.io/api/games?key=ee8d0e7a9dab4d5a9e92bcd94ca0406a&ordering=-added&page_size=10");
+    const games = response.data.results;
+    res.json({ games });
+  } catch (error) {
+    next(error);
+  }
+});
+
+// Upcoming releases
+app.get("/upcoming", async (req, res, next) => {
+  try {
+    const response = await axios.get("https://api.rawg.io/api/games?key=ee8d0e7a9dab4d5a9e92bcd94ca0406a&dates=2023-12-01,2023-12-31&ordering=-released&page_size=10");
+    const upcomingGames = response.data.results;
+    res.json({ upcomingGames });
+  } catch (error) {
+    next(error);
+  }
 });
 
 app.post("/api/videogames", (req, res, next) => {
@@ -97,3 +109,7 @@ app.use((err, req, res, next) => {
   console.error("Global error: ", err);
   res.status(500).json({ error: "Internal Server Error" });
 });
+
+app.listen(PORT, () => {
+  console.log(`Server is listening on port: ${PORT}`)
+})
