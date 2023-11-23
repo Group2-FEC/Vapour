@@ -1,9 +1,6 @@
+import Header from "./Header";
 const App = () => {
-  return (
-<>
-<p className="text-7xl">Fake Steam</p>
-</>
-  );
+	return <Header />;
 };
 
 export default App;
