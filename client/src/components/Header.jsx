@@ -27,14 +27,10 @@ const Header = () => {
 					<img
 						className="w-10 bg-green-200 p-2"
 						src={notification}
-						alt="announcement"
+						alt="notification"
 					/>
 					<div className="flex items-center gap-1">
-						<img
-							className="w-10 bg-red-200 p-2"
-							src={userImage}
-							alt="announcement"
-						/>
+						<img className="w-10 bg-red-200 p-2" src={userImage} alt="user" />
 						<p className="font-bold text-red-400">CoolDude99</p>
 					</div>
 				</div>
@@ -58,7 +54,7 @@ const Header = () => {
 					className="w-5/6 mx-auto flex justify-between items-center bg-gradient-to-r from-blue-400 to-blue-800 rounded-t"
 				>
 					<div className="flex">
-						<img className="w-8 p-1" src={userImage} alt="announcement" />
+						<img className="w-8 p-1" src={userImage} alt="user" />
 						{menuLinks.map((link) => (
 							<p className="text-slate-100 font-bold text-sm uppercase p-2">
 								{link}
