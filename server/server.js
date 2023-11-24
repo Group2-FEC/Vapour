@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
 app.get("/api/games", async (req, res, next) => {
 	try {
 		const response = await axios.get(
-			`https://api.rawg.io/api/games?key=${API_KEY}&ordering=-added&page_size=12`
+			`https://api.rawg.io/api/games?key=${API_KEY}&page_size=12`
 		);
 		const games = response.data.results;
 		res.json({ games });
