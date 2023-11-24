@@ -16,14 +16,13 @@ const FrontPage = () => {
 	useEffect(() => {
 		getGames();
 	}, []);
-
 	return (
 		<>
 			<div className="mx-auto grid grid-cols-3 px-2">
 				{games.length !== 0 ? (
 					games.map((game) => {
 						return (
-							<div className="pb-2">
+							<div key={game.id} className="pb-2">
 								<img
 									src={game.background_image}
 									alt="games"

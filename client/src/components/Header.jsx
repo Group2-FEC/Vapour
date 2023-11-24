@@ -10,7 +10,7 @@ const Header = () => {
 		"Shop",
 		"News",
 		"Labs",
-		"Wishlist(5)"
+		"Wishlist(5)",
 	];
 	const userLinks = ["Store", "Library", "Community", "CoolDude99"];
 
@@ -37,8 +37,11 @@ const Header = () => {
 					</div>
 				</div>
 				<div id="userLinks" className="flex gap-5 px-5">
-					{userLinks.map((link) => (
-						<p className="text-slate-100 font-bold text-lg uppercase p-2">
+					{userLinks.map((link, index) => (
+						<p
+							key={index}
+							className="text-slate-100 font-bold text-lg uppercase p-2"
+						>
 							{link}
 						</p>
 					))}
@@ -49,8 +52,11 @@ const Header = () => {
 				>
 					<div className="flex gap-5 items-center pl-1">
 						<img className="w-8 h-8" src={userImage} alt="user" />
-						{menuLinks.map((link) => (
-							<p className="text-slate-100 font-bold text-sm uppercase">
+						{menuLinks.map((link, index) => (
+							<p
+								key={index}
+								className="text-slate-100 font-bold text-sm uppercase"
+							>
 								{link}
 							</p>
 						))}
