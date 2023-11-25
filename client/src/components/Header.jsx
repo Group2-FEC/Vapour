@@ -4,14 +4,16 @@ import announcement from "../img/icons/announcement.png";
 import userImage from "../img/icons/user.png";
 const Header = () => {
 	const menuLinks = [
-		"Your Store",
-		"New & Noteworthy",
+		"Store",
+		"New",
 		"Categories",
-		"Points Shop",
+		"Shop",
 		"News",
 		"Labs",
+		"Wishlist(5)",
 	];
 	const userLinks = ["Store", "Library", "Community", "CoolDude99"];
+
 	return (
 		<div className="bg-slate-800">
 			<header>
@@ -35,41 +37,39 @@ const Header = () => {
 					</div>
 				</div>
 				<div id="userLinks" className="flex gap-5 px-5">
-					{userLinks.map((link) => (
-						<p className="text-slate-100 font-bold text-lg uppercase p-2">
+					{userLinks.map((link, index) => (
+						<p
+							key={index}
+							className="text-slate-100 font-bold text-lg uppercase p-2"
+						>
 							{link}
 						</p>
 					))}
 				</div>
-
-				<p
-					id="wishlist"
-					className="text-right rounded-b w-5/6 text-white font-bold uppercase pb-1"
-				>
-					WISHLIST(69)
-				</p>
-				{/* Figure this out later to add bg. */}
 				<div
 					id="storeLinks"
 					className="w-5/6 mx-auto flex justify-between items-center bg-gradient-to-r from-blue-400 to-blue-800 rounded-t"
 				>
-					<div className="flex">
-						<img className="w-8 p-1" src={userImage} alt="user" />
-						{menuLinks.map((link) => (
-							<p className="text-slate-100 font-bold text-sm uppercase p-2">
+					<div className="flex gap-5 items-center pl-1">
+						<img className="w-8 h-8" src={userImage} alt="user" />
+						{menuLinks.map((link, index) => (
+							<p
+								key={index}
+								className="text-slate-100 font-bold text-sm uppercase"
+							>
 								{link}
 							</p>
 						))}
 					</div>
-					<div className="flex bg-blue-400 p-1">
+					<div className="flex p-1">
 						<input
-							className="p-1"
+							className="pl-1 bg-blue-900 text-white"
 							type="text"
 							name="search"
 							id="search"
 							placeholder="search"
 						/>
-						<img className="w-8 bg-blue-200 p-1" src={search} alt="search" />
+						<img className="w-8 h-8 p-1 invert" src={search} alt="search" />
 					</div>
 				</div>
 			</header>
