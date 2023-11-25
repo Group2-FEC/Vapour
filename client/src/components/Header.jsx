@@ -15,7 +15,7 @@ const Header = () => {
 	const userLinks = ["Store", "Library", "Community", "CoolDude99"];
 
 	return (
-		<div className="bg-slate-700/70">
+		<div className="bg-slate-700/70 border-b border-gray-600">
 			<header>
 				<div
 					id="userBar"
