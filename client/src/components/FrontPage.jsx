@@ -18,13 +18,13 @@ const FrontPage = () => {
 	}, []);
 	return (
 		<>
-			<div className="w-5/6 mx-auto grid grid-cols-3 m-2 rounded bg-gradient-to-r from-blue-400/50 to-blue-800/50 mb-10">
+			<div className="w-5/6 mx-auto grid grid-cols-3 gap-3 rounded-b bg-gradient-to-r from-blue-200/40 to-blue-500/40 mb-10">
 				{games.length !== 0 ? (
 					games.map((game) => {
 						return (
 							<div
 								key={game.id}
-								className="m-2 rounded-b bg-slate-500/30 shadow-xl"
+								className="rounded-b bg-sky-950/50 shadow-xl border-b border-blue-400/40"
 							>
 								<img
 									src={game.background_image}
