@@ -18,20 +18,20 @@ const FrontPage = () => {
 	}, []);
 	return (
 		<>
-			<div className="w-5/6 mx-auto grid grid-cols-3 gap-2 rounded-b bg-gradient-to-r from-blue-200/40 to-blue-500/40 mb-10">
+			<div className="w-5/6 mx-auto grid grid-cols-3 gap-2 rounded-b bg-gradient-to-r from-blue-200/40 to-blue-500/40 mb-10 p-2">
 				{games.length !== 0 ? (
 					games.map((game) => {
 						return (
 							<div
 								key={game.id}
-								className="rounded-b bg-sky-950/50 shadow-xl border-b border-blue-400/40"
+								className="shadow-xl"
 							>
 								<img
 									src={game.background_image}
 									alt="games"
-									className="h-56 w-[100%]"
+									className="h-48 w-[100%] rounded-t"
 								/>
-								<p className="text-center text-white text-xl font-bold">
+								<p className="text-center text-white text-xl font-bold bg-blue-400/30 rounded-b border-b-4 border-blue-300/60">
 									{game.name}
 								</p>
 							</div>
