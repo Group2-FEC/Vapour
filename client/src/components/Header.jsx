@@ -3,7 +3,7 @@ import notification from "../img/icons/notification.png";
 import announcement from "../img/icons/announcement.png";
 import userImage from "../img/icons/user.png";
 const Header = () => {
-	const menuLinks = [
+	const storeLinks = [
 		"Store",
 		"New",
 		"Categories",
@@ -15,7 +15,7 @@ const Header = () => {
 	const userLinks = ["Store", "Library", "Community", "CoolDude99"];
 
 	return (
-		<div className="bg-slate-800">
+		<div className="bg-slate-700/70">
 			<header>
 				<div
 					id="userBar"
@@ -48,11 +48,11 @@ const Header = () => {
 				</div>
 				<div
 					id="storeLinks"
-					className="w-5/6 mx-auto flex justify-between items-center bg-gradient-to-r from-blue-400 to-blue-800 rounded-t"
+					className="w-5/6 mx-auto flex justify-between items-center bg-gradient-to-r from-blue-400 to-blue-800 rounded"
 				>
 					<div className="flex gap-5 items-center pl-1">
-						<img className="w-8 h-8" src={userImage} alt="user" />
-						{menuLinks.map((link, index) => (
+						<img className="w-8 h-8 invert" src={userImage} alt="user" />
+						{storeLinks.map((link, index) => (
 							<p
 								key={index}
 								className="text-slate-100 font-bold text-sm uppercase"
