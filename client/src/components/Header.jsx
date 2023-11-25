@@ -61,7 +61,7 @@ const Header = () => {
 					</div>
 					<div className="flex p-1">
 						<input
-							className="pl-1 bg-blue-900 text-white"
+							className="pl-1 bg-blue-900 text-white border-2 border-blue-300 rounded"
 							type="text"
 							name="search"
 							id="search"
