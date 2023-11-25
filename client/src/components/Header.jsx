@@ -19,24 +19,23 @@ const Header = () => {
 			<header>
 				<div
 					id="userBar"
-					className="flex justify-end items-center px-5 pt-1 gap-5"
+					className="flex justify-end items-center px-5 pt-1 gap-2"
 				>
 					<img
-						className="w-10 bg-sky-200 p-2"
+						className="w-10 bg-sky-200 p-2 rounded"
 						src={announcement}
 						alt="announcement"
 					/>
 					<img
-						className="w-10 bg-green-200 p-2"
+						className="w-10 bg-green-200 p-2 rounded"
 						src={notification}
 						alt="notification"
 					/>
 					<div className="flex items-center gap-1">
-						<img className="w-10 bg-red-200 p-2" src={userImage} alt="user" />
-						<p className="font-bold text-red-400">CoolDude99</p>
+						<img className="w-10 bg-red-200 p-2 rounded" src={userImage} alt="user" />
 					</div>
 				</div>
-				<div id="userLinks" className="flex gap-5 px-5">
+				<div id="userLinks" className="flex justify-center gap-5">
 					{userLinks.map((link, index) => (
 						<p
 							key={index}
@@ -48,10 +47,9 @@ const Header = () => {
 				</div>
 				<div
 					id="storeLinks"
-					className="w-5/6 mx-auto flex justify-between items-center bg-gradient-to-r from-blue-400 to-blue-800 rounded"
+					className="w-5/6 mx-auto flex justify-between items-center bg-gradient-to-r from-blue-400 to-blue-800 rounded-t"
 				>
 					<div className="flex gap-5 items-center pl-1">
-						<img className="w-8 h-8 invert" src={userImage} alt="user" />
 						{storeLinks.map((link, index) => (
 							<p
 								key={index}
@@ -63,7 +61,7 @@ const Header = () => {
 					</div>
 					<div className="flex p-1">
 						<input
-							className="pl-1 bg-blue-900 text-white"
+							className="pl-1 bg-blue-900 text-white border-2 border-blue-300 rounded"
 							type="text"
 							name="search"
 							id="search"
