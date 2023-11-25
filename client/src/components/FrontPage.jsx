@@ -18,7 +18,7 @@ const FrontPage = () => {
 	}, []);
 	return (
 		<>
-			<div className="w-5/6 mx-auto grid grid-cols-3 gap-3 rounded-b bg-gradient-to-r from-blue-200/40 to-blue-500/40 mb-10">
+			<div className="w-5/6 mx-auto grid grid-cols-3 gap-2 rounded-b bg-gradient-to-r from-blue-200/40 to-blue-500/40 mb-10">
 				{games.length !== 0 ? (
 					games.map((game) => {
 						return (
