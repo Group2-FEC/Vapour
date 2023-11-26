@@ -7,7 +7,7 @@ const FrontPage = () => {
 	const getGames = async () => {
 		try {
 			const response = await axios.get("/api/games");
-			setGames(response.data.games);
+			setGames(response.data);
 		} catch (error) {
 			console.error(error);
 		}
