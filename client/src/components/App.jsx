@@ -8,7 +8,7 @@ const App = () => {
     <div className="min-h-[100dvh]">
       <Header />
       {/* <FrontPage/> */}
-      <FrontPage />
+      <Library />
       <Footer />
     </div>
   );
