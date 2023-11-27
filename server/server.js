@@ -39,7 +39,7 @@ async function getRawgGames(_, res, next) {
 	}
 }
 
-async function getRawgGameByName(_, res, next) {
+async function getRawgGameByName(req, res, next) {
 	try {
 		const { search } = req.query;
 		const response = await axios.get(
@@ -83,11 +83,11 @@ async function getDbGames(_, res, next) {
 }
 
 async function postDbGame(req, res, next) {
-	const { name, age_rating, genre, rating } = req.body;
+	const { name, background_image ,esrb_rating, released, rating } = req.body;
 	try {
 		const data = await client.query(
-			"INSERT INTO videogames(name, age_rating, genre, rating) VALUES($1, $2, $3, $4) RETURNING *",
-			[name, age_rating, genre, rating]
+			"INSERT INTO videogames(name, background_image, esrb_rating, released, rating) VALUES($1, $2, $3, $4, $5) RETURNING *",
+			[name, background_image, esrb_rating, released, rating]
 		);
 		res.status(201).json(data.rows[0]);
 	} catch (error) {
