@@ -35,13 +35,13 @@ const Library = () => {
 			>
 				{library.length !== 0 ? (
 					library.map((game) => (
-						<div key={game.id} className="flex flex-col items-center pb-10">
+						<div key={game.id} className="flex flex-col items-center relative">
 							<img
 								src={game.background_image}
 								alt="games"
-								className="min-w-full min-h-full rounded shadow-xl border border-white/40 mb-2"
+								className="min-w-full min-h-full rounded shadow-xl mb-2"
 							/>
-							<p className="text-slate-200 font-bold text-sm">{game.name}</p>
+							<p className="text-slate-200 font-bold text-sm absolute bottom-0 bg-slate-800 rounded-b w-full text-center">{game.name}</p>
 						</div>
 					))
 				) : (
