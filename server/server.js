@@ -19,6 +19,7 @@ app.use(express.json());
 
 //CRUD routes
 app.get("/api/games", getRawgGames);
+app.get("/api/games/:name", getRawgGameByName);
 app.get("/api/upcoming", getRawgUpcoming);
 app.get("/api/library", getLibraryGames);
 app.get("/api/videogames", getDbGames);
@@ -37,6 +38,17 @@ async function getRawgGames(_, res, next) {
 		next(error);
 	}
 }
+
+async function getRawgGameByName(_, res, next) {
+	try {
+		const response = await axios.get(
+			`https://api.rawg.io/api/games?key=${API_KEY}&search=${searchQuery}`
+		);
+		res.send(response.data.results);
+	} catch (error) {
+		next(error);
+	}
+};
 
 async function getRawgUpcoming(_, res, next) {
 	try {
