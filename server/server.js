@@ -19,7 +19,7 @@ app.use(express.json());
 
 //CRUD routes
 app.get("/api/games", getRawgGames);
-app.get("/api/games/:id", getRawgGameDetails);
+app.get("/api/game/:id", getRawgGameDetails);
 app.get("/api/upcoming", getRawgUpcoming);
 app.get("/api/library", getLibraryGames);
 app.get("/api/videogames", getDbGames);
