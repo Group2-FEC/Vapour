@@ -29,7 +29,7 @@ const FrontPage = () => {
 								<img
 									src={game.background_image}
 									alt="games"
-									className="h-48 w-[100%] rounded-t"
+									className="h-48 w-full rounded-t"
 								/>
 								<p className="text-center text-white text-xl font-bold bg-blue-400/30 rounded-b border-b-4 border-blue-300/60">
 									{game.name}
