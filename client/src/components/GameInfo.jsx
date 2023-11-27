@@ -44,7 +44,7 @@ const GameInfo = (
 							{platforms.map(({ platform: { id, name } }) => {
 								return (
 									<div key={id}>
-										<li>{name} </li>
+										<li>{name}</li>
 									</div>
 								);
 							})}
