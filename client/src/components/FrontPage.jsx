@@ -44,8 +44,6 @@ const FrontPage = () => {
 								key={game.id}
 								className="shadow-xl cursor-pointer"
 								onClick={() => getGameDetails(game.id)}
-								data-modal-target="default-modal"
-								data-modal-toggle="default-modal"
 							>
 								<img
 									src={game.background_image}
