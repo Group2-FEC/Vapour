@@ -31,7 +31,7 @@ const Library = () => {
 			</div>
 			<div
 				id="gallery"
-				className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 border-l border-white/40 gap-2 pl-2"
+				className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 pl-2"
 			>
 				{library.length !== 0 ? (
 					library.map((game) => (
