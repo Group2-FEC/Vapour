@@ -38,6 +38,7 @@ const Library = () => {
                 src={game.background_image}
                 alt="games"
                 className="w-full h-auto rounded shadow-xl border border-white/40 mb-2"
+                style={{ height: "100%", width: "100%" }}
               />
               <p className="text-slate-200 font-bold text-sm">{game.name}</p>
             </div>
