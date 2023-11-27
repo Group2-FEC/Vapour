@@ -7,8 +7,8 @@ const App = () => {
 	return (
 		<div className="min-h-[100dvh]">
 			<Header />
-			{/* <FrontPage/> */}
-			<Library />
+			<FrontPage/>
+			{/* <Library /> */}
 			<Footer />
 		</div>
 	);
