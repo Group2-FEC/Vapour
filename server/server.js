@@ -41,8 +41,9 @@ async function getRawgGames(_, res, next) {
 
 async function getRawgGameByName(_, res, next) {
 	try {
+		const { search } = req.query;
 		const response = await axios.get(
-			`https://api.rawg.io/api/games?key=${API_KEY}&search=${searchQuery}`
+			`https://api.rawg.io/api/games?key=${API_KEY}&search=${search}`
 		);
 		res.send(response.data.results);
 	} catch (error) {
