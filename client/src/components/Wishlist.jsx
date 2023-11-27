@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Wishlist = () => {
     const [wishlist, setWishlist] = useState([]);
@@ -8,13 +8,15 @@ const Wishlist = () => {
 
     const getWishlist = async () => {
 		try {
-			const response = await axios.post("api/videogames");
+			const response = await axios.get("api/videogames");
 			setWishlist(response.data);
 		} catch (error) {
 			console.error(error);
 		}
 	};
-
+    useEffect(() => {
+		getWishlist();
+	}, []);
     const handleSearch = async () => {
         try {
           const response = await axios.get(`api/games?search=${searchQuery}`);
@@ -22,7 +24,7 @@ const Wishlist = () => {
 
           if (gameData.length > 0) {
             const firstGame = gameData[0];
-            await axios.post('api/videogames', firstGame);
+            await axios.get('api/games/:name', firstGame);
           } else {
             console.log('No games found.');
           }
@@ -49,12 +51,22 @@ const Wishlist = () => {
                 }
               }}
             />
-            {/* Render wishlist items */}
-          </div>
-          {/* Render gallery */}
+             {/* Render wishlist items */}
+             {wishlist.map((game) => (
+                <div key={game.id}>
+                <p className="text-slate-200 font-bold text-sm">{game.name}</p>
+                <img src={game.background_image} alt="games" className="h-full rounded shadow-xl border border-white/40" />
+                <p className="text-slate-200 font-bold text-sm">{game.esrb_rating}</p>
+                <p className="text-slate-200 font-bold text-sm">{game.rating}</p>
+                <p className="text-slate-200 font-bold text-sm">{game.released}</p>
+
+                {/* Render other game details as needed */}
+                </div>
+            ))}
         </div>
-      );
-    };
-  
+        {/* Render gallery */}
+    </div>
+);
+};
 
 export default Wishlist;
