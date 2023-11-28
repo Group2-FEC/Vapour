@@ -1,12 +1,8 @@
 import axios from "axios";
-import GameInfo from "./GameInfo";
 import { useEffect, useState } from "react";
 
 const FrontPage = ({
 	getGameDetails,
-	handleCloseButton,
-	gameInfo,
-	showInfo,
 }) => {
 	const [games, setGames] = useState([]);
 
@@ -51,9 +47,6 @@ const FrontPage = ({
 					</p>
 				)}
 			</div>
-			{showInfo && (
-				<GameInfo gameInfo={gameInfo} handleCloseButton={handleCloseButton} />
-			)}
 		</div>
 	);
 };

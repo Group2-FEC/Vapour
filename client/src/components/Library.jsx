@@ -1,9 +1,7 @@
 import axios from "axios";
-import search from "../img/icons/search.png";
-import GameInfo from "./GameInfo";
 import { useEffect, useState } from "react";
 
-const Library = ({ getGameDetails, handleCloseButton, gameInfo, showInfo }) => {
+const Library = ({ getGameDetails }) => {
 	const [library, setLibrary] = useState([]);
 
 	const getLibrary = async () => {
@@ -45,9 +43,6 @@ const Library = ({ getGameDetails, handleCloseButton, gameInfo, showInfo }) => {
 					<p className="text-white font-bold">Loading images</p>
 				)}
 			</div>
-			{showInfo && (
-				<GameInfo gameInfo={gameInfo} handleCloseButton={handleCloseButton} />
-			)}
 		</div>
 	);
 };
