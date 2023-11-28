@@ -7,38 +7,40 @@ import Library from "./Library";
 import Wishlist from "./Wishlist";
 import Footer from "./Footer";
 import Upcoming from "./Upcoming";
+import GameCarousel from "./GameCarousel";
 // import ModelReference from "./ModelReference";
 const App = () => {
-	const [gameInfo, setGameInfo] = useState({});
-	const [showInfo, setShowInfo] = useState(false);
+  const [gameInfo, setGameInfo] = useState({});
+  const [showInfo, setShowInfo] = useState(false);
 
-	const getGameDetails = async (id) => {
-		try {
-			const response = await axios.get(`/api/game/${id}`);
-			setGameInfo(response.data);
-			setShowInfo(!showInfo);
-		} catch (error) {
-			console.error(error);
-		}
-	};
+  const getGameDetails = async (id) => {
+    try {
+      const response = await axios.get(`/api/game/${id}`);
+      setGameInfo(response.data);
+      setShowInfo(!showInfo);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-	const handleCloseButton = () => {
-		setShowInfo(!showInfo);
-	};
+  const handleCloseButton = () => {
+    setShowInfo(!showInfo);
+  };
 
-	return (
-		<div className="min-h-[100dvh]">
-			<Header />
-			<Upcoming getGameDetails={getGameDetails} />
-			{/* <Wishlist/> */}
-			{/* <FrontPage getGameDetails={getGameDetails} /> */}
-			{/* <Library getGameDetails={getGameDetails} /> */}
-			{showInfo && (
-				<GameInfo gameInfo={gameInfo} handleCloseButton={handleCloseButton} />
-			)}
-			<Footer />
-		</div>
-	);
+  return (
+    <div className="min-h-[100dvh]">
+      <Header />
+      <Upcoming getGameDetails={getGameDetails} />
+      {/* <Wishlist/> */}
+      {/* <FrontPage getGameDetails={getGameDetails} /> */}
+      {/* <Library getGameDetails={getGameDetails} /> */}
+      {showInfo && (
+        <GameInfo gameInfo={gameInfo} handleCloseButton={handleCloseButton} />
+      )}
+      <GameCarousel />
+      <Footer />
+    </div>
+  );
 };
 
 export default App;
