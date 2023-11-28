@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import Header from "./Header";
 import FrontPage from "./FrontPage";
+import GameInfo from "./GameInfo";
 import Footer from "./Footer";
 import Library from "./Library";
 // import ModelReference from "./ModelReference";
@@ -27,18 +28,11 @@ const App = () => {
 	return (
 		<div className="min-h-[100dvh]">
 			<Header />
-			{/* <FrontPage
-				getGameDetails={getGameDetails}
-				handleCloseButton={handleCloseButton}
-				gameInfo={gameInfo}
-				showInfo={showInfo}
-			/> */}
-			<Library
-				getGameDetails={getGameDetails}
-				handleCloseButton={handleCloseButton}
-				gameInfo={gameInfo}
-				showInfo={showInfo}
-			/>
+			<FrontPage getGameDetails={getGameDetails} />
+			{/* <Library getGameDetails={getGameDetails} /> */}
+			{showInfo && (
+				<GameInfo gameInfo={gameInfo} handleCloseButton={handleCloseButton} />
+			)}
 			<Footer />
 		</div>
 	);
