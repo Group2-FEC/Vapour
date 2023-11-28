@@ -28,7 +28,7 @@ const GameInfo = ({
 					<div className="font-bold">
 						<span>ESRB: </span>
 						<span className="underline">
-							{esrb_rating ? esrb_rating.name : "No Rating Assigned"}
+							{esrb_rating ? esrb_rating.name : "Not Rated"}
 						</span>
 					</div>
 					<div className="flex gap-2 font-bold">

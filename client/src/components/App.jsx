@@ -6,7 +6,7 @@ import GameInfo from "./GameInfo";
 import Footer from "./Footer";
 import Library from "./Library";
 // import ModelReference from "./ModelReference";
-// import Wishlist from "./Wishlist";
+import Wishlist from "./Wishlist";
 const App = () => {
 	const [gameInfo, setGameInfo] = useState({});
 	const [showInfo, setShowInfo] = useState(false);
@@ -28,8 +28,9 @@ const App = () => {
 	return (
 		<div className="min-h-[100dvh]">
 			<Header />
-			<FrontPage getGameDetails={getGameDetails} />
-			{/* <Library getGameDetails={getGameDetails} /> */}
+			{/* <Wishlist/> */}
+			{/* <FrontPage getGameDetails={getGameDetails} /> */}
+			<Library getGameDetails={getGameDetails} />
 			{showInfo && (
 				<GameInfo gameInfo={gameInfo} handleCloseButton={handleCloseButton} />
 			)}
