@@ -7,14 +7,14 @@ const FrontPage = () => {
 	const [gameInfo, setGameInfo] = useState({});
 	const [showInfo, setShowInfo] = useState(false);
 
-  const getGames = async () => {
-    try {
-      const response = await axios.get("/api/games");
-      setGames(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+	const getGames = async () => {
+		try {
+			const response = await axios.get("/api/games");
+			setGames(response.data);
+		} catch (error) {
+			console.error(error);
+		}
+	};
 
 	const getGameDetails = async (id) => {
 		try {
@@ -35,7 +35,7 @@ const FrontPage = () => {
 	};
 
 	return (
-		<div className="relative">
+		<div className="relative" onClick={() => setShowInfo(false)}>
 			<div className="w-5/6 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 rounded-b bg-gradient-to-r from-blue-200/40 to-blue-500/40 mb-10 p-2">
 				{games.length !== 0 ? (
 					games.map((game) => {
