@@ -1,8 +1,7 @@
 import axios from "axios";
-import search from "../img/icons/search.png";
 import { useEffect, useState } from "react";
 
-const Library = () => {
+const Library = ({ getGameDetails }) => {
 	const [library, setLibrary] = useState([]);
 
 	const getLibrary = async () => {
@@ -25,7 +24,11 @@ const Library = () => {
 			>
 				{library.length !== 0 ? (
 					library.map((game) => (
-						<div key={game.id} className="flex flex-col items-center relative rounded">
+						<div
+							key={game.id}
+							className="flex flex-col items-center relative rounded cursor-pointer"
+							onClick={() => getGameDetails(game.id)}
+						>
 							<img
 								src={game.background_image}
 								alt="games"
