@@ -3,8 +3,9 @@ import axios from "axios";
 import Header from "./Header";
 import FrontPage from "./FrontPage";
 import Footer from "./Footer";
-import Library from "./Library";
+//import Library from "./Library";
 // import ModelReference from "./ModelReference";
+import Wishlist from "./Wishlist";
 const App = () => {
 	const [gameInfo, setGameInfo] = useState({});
 	const [showInfo, setShowInfo] = useState(false);
