@@ -3,7 +3,7 @@ import axios from "axios";
 import Header from "./Header";
 import FrontPage from "./FrontPage";
 import Footer from "./Footer";
-//import Library from "./Library";
+import Library from "./Library";
 // import ModelReference from "./ModelReference";
 // import Wishlist from "./Wishlist";
 const App = () => {
@@ -27,13 +27,18 @@ const App = () => {
 	return (
 		<div className="min-h-[100dvh]">
 			<Header />
-			<FrontPage
+			{/* <FrontPage
+				getGameDetails={getGameDetails}
+				handleCloseButton={handleCloseButton}
+				gameInfo={gameInfo}
+				showInfo={showInfo}
+			/> */}
+			<Library
 				getGameDetails={getGameDetails}
 				handleCloseButton={handleCloseButton}
 				gameInfo={gameInfo}
 				showInfo={showInfo}
 			/>
-			{/* <Library /> */}
 			<Footer />
 		</div>
 	);
