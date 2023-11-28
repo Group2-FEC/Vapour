@@ -14,22 +14,47 @@ const Wishlist = () => {
 			console.error(error);
 		}
 	};
+
     useEffect(() => {
 		getWishlist();
 	}, []);
+
     const handleSearch = async () => {
         try {
-          const response = await axios.get(`api/games?search=${searchQuery}`);
-          const gameData = response.data;
-
-          if (gameData.length > 0) {
-            const firstGame = gameData[0];
-            await axios.get('api/games/:name', firstGame);
-          } else {
-            console.log('No games found.');
-          }
+            const response = await axios.get(`api/games/${searchQuery}`);
+            const gameData = response.data;
+            console.log(gameData[0])
+            if (gameData.length > 0) {
+                const firstGame = gameData[0];
+                // const firstGameResponse = await axios.get(`api/games/${firstGame.name}`);
+                // const firstGame = firstGameResponse.data;
+    
+                await axios.post("api/videogames", {
+                    name: firstGame.name,
+                    background_image: firstGame.background_image,
+                    esrb_rating: firstGame.esrb_rating,
+                    rating: firstGame.rating,
+                    released: firstGame.released
+                });
+    
+                setWishlist([...wishlist, firstGame]);
+            } else {
+                console.log('No games found.');
+            }
         } catch (error) {
-          console.error(error);
+            console.error(error);
+        }
+    };
+    
+
+    const deleteGame = async (gameId) => {
+        try {
+            await axios.delete(`/api/videogames/${gameId}`);
+            // Update the wishlist state after successful deletion
+            const updatedWishlist = wishlist.filter(game => game.id !== gameId);
+            setWishlist(updatedWishlist);
+        } catch (error) {
+            console.error(error);
         }
     };
 
@@ -55,12 +80,16 @@ const Wishlist = () => {
              {wishlist.map((game) => (
                 <div key={game.id}>
                 <p className="text-slate-200 font-bold text-sm">{game.name}</p>
-                <img src={game.background_image} alt="games" className="h-full rounded shadow-xl border border-white/40" />
+                <img src={game.background_image} 
+                alt="games" 
+                className="h-full rounded shadow-xl border border-white/40" 
+                key={`${game.id}-image`}
+                onDoubleClick={() => deleteGame(game.id)}
+                />
                 <p className="text-slate-200 font-bold text-sm">{game.esrb_rating}</p>
                 <p className="text-slate-200 font-bold text-sm">{game.rating}</p>
                 <p className="text-slate-200 font-bold text-sm">{game.released}</p>
-
-                {/* Render other game details as needed */}
+                
                 </div>
             ))}
         </div>
