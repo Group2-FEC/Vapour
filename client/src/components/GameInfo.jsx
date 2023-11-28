@@ -42,11 +42,7 @@ const GameInfo = (
 						<span>Platforms: </span>
 						<ul className="flex gap-2 underline">
 							{platforms.map(({ platform: { id, name } }) => {
-								return (
-									<div key={id}>
-										<li>{name}</li>
-									</div>
-								);
+								return <li key={id}>{name}</li>;
 							})}
 						</ul>
 					</div>
