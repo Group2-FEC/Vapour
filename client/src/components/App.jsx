@@ -1,13 +1,37 @@
+import { useState } from "react";
+import axios from "axios";
 import Header from "./Header";
 import FrontPage from "./FrontPage";
 import Footer from "./Footer";
 import Library from "./Library";
 // import ModelReference from "./ModelReference";
 const App = () => {
+	const [gameInfo, setGameInfo] = useState({});
+	const [showInfo, setShowInfo] = useState(false);
+
+	const getGameDetails = async (id) => {
+		try {
+			const response = await axios.get(`/api/game/${id}`);
+			setGameInfo(response.data);
+			setShowInfo(true);
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	const handleCloseButton = () => {
+		setGameInfo(false);
+	};
+
 	return (
 		<div className="min-h-[100dvh]">
 			<Header />
-			<FrontPage/>
+			<FrontPage
+				getGameDetails={getGameDetails}
+				handleCloseButton={handleCloseButton}
+				gameInfo={gameInfo}
+				showInfo={showInfo}
+			/>
 			{/* <Library /> */}
 			<Footer />
 		</div>
