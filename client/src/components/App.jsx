@@ -1,14 +1,16 @@
 import Header from "./Header";
 import FrontPage from "./FrontPage";
 import Footer from "./Footer";
-import Library from "./Library";
+//import Library from "./Library";
 // import ModelReference from "./ModelReference";
+import Wishlist from "./Wishlist";
 const App = () => {
 	return (
 		<div className="min-h-[100dvh]">
 			<Header />
-			<FrontPage/>
-			{/* <Library /> */}
+			{/* <FrontPage/> */}
+			{/*<Library /> */}
+			<Wishlist/>
 			<Footer />
 		</div>
 	);
