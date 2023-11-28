@@ -19,29 +19,21 @@ const Library = () => {
 	}, []);
 	return (
 		<div className="w-5/6 mx-auto flex flex-col gap-2 rounded-b bg-gradient-to-r from-blue-200/40 to-blue-500/40 mb-10 p-2 mb-10">
-			<div className="flex justify-center">
-				<input
-					type="text"
-					name="search"
-					id="search"
-					placeholder="search"
-					className="p-1 w-1/3 rounded shadow"
-				/>
-				<img src={search} alt="search" className="invert w-8 h-8 p-1" />
-			</div>
 			<div
 				id="gallery"
-				className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 pl-2"
+				className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2"
 			>
 				{library.length !== 0 ? (
 					library.map((game) => (
-						<div key={game.id} className="flex flex-col items-center relative">
+						<div key={game.id} className="flex flex-col items-center relative rounded">
 							<img
 								src={game.background_image}
 								alt="games"
-								className="min-w-full min-h-full rounded shadow-xl mb-2"
+								className="md:h-36 sm:w-80 sm:h-48 w-full rounded"
 							/>
-							<p className="text-slate-200 font-bold text-sm absolute bottom-0 bg-slate-800 rounded-b w-full text-center">{game.name}</p>
+							<p className="text-slate-200 font-bold text-sm absolute bottom-0 bg-slate-800/80 text-center p-1  border-t border-slate-600 w-full rounded-b">
+								{game.name}
+							</p>
 						</div>
 					))
 				) : (
