@@ -1,17 +1,8 @@
-const GameInfo = (
-	{
-		gameInfo,
-		gameInfo: {
-			name,
-			metacritic,
-			esrb_rating,
-			platforms,
-			description,
-			website,
-		},
-	},
-	{ handleCloseButton }
-) => {
+const GameInfo = ({
+	gameInfo,
+	gameInfo: { name, metacritic, esrb_rating, platforms, description, website },
+	handleCloseButton,
+}) => {
 	return (
 		<div className="w-4/6 text-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-slate-800 p-10 rounded shadow-[0_0_15px_black] border border-blue-300/50">
 			<div className="absolute right-1 top-1 cursor-pointer">
