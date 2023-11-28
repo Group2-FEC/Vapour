@@ -79,7 +79,7 @@ async function getRawgGameByName(req, res, next) {
 async function getRawgUpcoming(_, res, next) {
   try {
     const response = await axios.get(
-      `https://api.rawg.io/api/games?key=${API_KEY}&dates=2023-12-01,2023-12-31&ordering=-released&page_size=10`
+      `https://api.rawg.io/api/games?key=${API_KEY}&dates=2023-12-01,2023-12-31&ordering=-released&page_size=12`
     );
     res.send(response.data.results);
   } catch (error) {
