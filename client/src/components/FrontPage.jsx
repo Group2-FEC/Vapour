@@ -42,15 +42,15 @@ const FrontPage = () => {
 						return (
 							<div
 								key={game.id}
-								className="shadow-xl cursor-pointer"
+								className="shadow-xl cursor-pointer relative"
 								onClick={() => getGameDetails(game.id)}
 							>
 								<img
 									src={game.background_image}
 									alt="games"
-									className="h-48 w-full rounded-t"
+									className="lg:w-84 lg:h-48 md:h-56 w-full rounded"
 								/>
-								<p className="text-center text-white text-xl font-bold bg-blue-400/30 rounded-b border-b-4 border-blue-300/60">
+								<p className="absolute bottom-0 font-bold text-center bg-slate-800/80 text-slate-200 text-xl p-1 border-t border-slate-600 w-full rounded-b">
 									{game.name}
 								</p>
 							</div>
