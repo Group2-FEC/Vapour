@@ -14,14 +14,14 @@ const App = () => {
 		try {
 			const response = await axios.get(`/api/game/${id}`);
 			setGameInfo(response.data);
-			setShowInfo(true);
+			setShowInfo(!showInfo);
 		} catch (error) {
 			console.error(error);
 		}
 	};
 
 	const handleCloseButton = () => {
-		setGameInfo(false);
+		setShowInfo(!showInfo);
 	};
 
 	return (
