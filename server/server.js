@@ -19,6 +19,7 @@ app.use(express.json());
 
 //CRUD routes
 app.get("/api/games", getRawgGames);
+app.get("/api/games/:name", getRawgGameByName);
 app.get("/api/game/:id", getRawgGameDetails);
 app.get("/api/upcoming", getRawgUpcoming);
 app.get("/api/library", getLibraryGames);
@@ -50,6 +51,30 @@ async function getRawgGameDetails(req, res, next) {
 		next(error);
 	}
 }
+
+async function getRawgGameByName(req, res, next) {
+	const name = req.params.name;
+	try {
+		const response = await axios.get(
+            `https://api.rawg.io/api/games?key=${API_KEY}&search=${name}`
+		);
+		
+		// Process the response and extract the required fields
+		const filteredData = response.data.results.map((game) => ({
+			id: game.id,
+			name: game.name,
+			background_image: game.background_image,
+			esrb_rating: game.esrb_rating ? game.esrb_rating.name : 'Not Rated',
+			rating: game.rating,
+			released: game.released
+			// Add more fields as needed
+		}));
+		res.send(filteredData);
+	} catch (error) {
+		next(error);
+	}
+};
+
 
 async function getRawgUpcoming(_, res, next) {
   try {
@@ -83,16 +108,16 @@ async function getDbGames(_, res, next) {
 }
 
 async function postDbGame(req, res, next) {
-  const { name, age_rating, genre, rating } = req.body;
-  try {
-    const data = await client.query(
-      "INSERT INTO videogames(name, age_rating, genre, rating) VALUES($1, $2, $3, $4) RETURNING *",
-      [name, age_rating, genre, rating]
-    );
-    res.status(201).json(data.rows[0]);
-  } catch (error) {
-    next(error);
-  }
+	const { name, background_image ,esrb_rating, released, rating } = req.body;
+	try {
+		const data = await client.query(
+			"INSERT INTO videogames(name, background_image, esrb_rating, released, rating) VALUES($1, $2, $3, $4, $5) RETURNING *",
+			[name, background_image, esrb_rating, released, rating]
+		);
+		res.status(201).json(data.rows[0]);
+	} catch (error) {
+		next(error);
+	}
 }
 
 async function editDbGame(req, res, next) {
