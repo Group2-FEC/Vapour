@@ -23,7 +23,9 @@ const GameInfo = ({
 					<p className="font-bold text-3xl">{name}</p>
 					<div className="font-bold">
 						<span>Metacritic: </span>
-						<span className="underline">{metacritic}</span>
+						<span className="underline">
+							{metacritic ? metacritic : "Not Rated"}
+						</span>
 					</div>
 					<div className="font-bold">
 						<span>ESRB: </span>
@@ -34,9 +36,11 @@ const GameInfo = ({
 					<div className="flex gap-2 font-bold">
 						<span>Platforms: </span>
 						<ul className="flex gap-2 underline">
-							{platforms.map(({ platform: { id, name } }) => {
-								return <li key={id}>{name}</li>;
-							})}
+							{platforms.length !== 0
+								? platforms.map(({ platform: { id, name } }) => {
+										return <li key={id}>{name}</li>;
+								  })
+								: "N/A"}
 						</ul>
 					</div>
 					<div

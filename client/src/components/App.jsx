@@ -3,10 +3,11 @@ import axios from "axios";
 import Header from "./Header";
 import FrontPage from "./FrontPage";
 import GameInfo from "./GameInfo";
-import Footer from "./Footer";
 import Library from "./Library";
-// import ModelReference from "./ModelReference";
 import Wishlist from "./Wishlist";
+import Footer from "./Footer";
+import Upcoming from "./Upcoming";
+// import ModelReference from "./ModelReference";
 const App = () => {
 	const [gameInfo, setGameInfo] = useState({});
 	const [showInfo, setShowInfo] = useState(false);
@@ -28,9 +29,10 @@ const App = () => {
 	return (
 		<div className="min-h-[100dvh]">
 			<Header />
+			<Upcoming getGameDetails={getGameDetails} />
 			{/* <Wishlist/> */}
 			{/* <FrontPage getGameDetails={getGameDetails} /> */}
-			<Library getGameDetails={getGameDetails} />
+			{/* <Library getGameDetails={getGameDetails} /> */}
 			{showInfo && (
 				<GameInfo gameInfo={gameInfo} handleCloseButton={handleCloseButton} />
 			)}
