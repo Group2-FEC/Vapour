@@ -32,10 +32,14 @@ const Header = () => {
 						alt="notification"
 					/>
 					<div className="flex items-center gap-1">
-						<img className="w-10 bg-red-200 p-2 rounded" src={userImage} alt="user" />
+						<img
+							className="w-10 bg-red-200 p-2 rounded"
+							src={userImage}
+							alt="user"
+						/>
 					</div>
 				</div>
-				<div id="userLinks" className="flex justify-center gap-5">
+				<div id="userLinks" className="md:flex justify-center gap-5">
 					{userLinks.map((link, index) => (
 						<p
 							key={index}
@@ -49,7 +53,7 @@ const Header = () => {
 					id="storeLinks"
 					className="w-5/6 mx-auto flex justify-between items-center bg-gradient-to-r from-blue-400 to-blue-800 rounded-t"
 				>
-					<div className="flex gap-5 items-center pl-1">
+					<div className="flex flex-col md:flex-row gap-5 items-center md:pr-1 pl-2">
 						{storeLinks.map((link, index) => (
 							<p
 								key={index}
@@ -59,7 +63,7 @@ const Header = () => {
 							</p>
 						))}
 					</div>
-					<div className="flex p-1">
+					<div className="flex p-1 mt-2 md:mt-0 md:self-end w-full md:w-auto">
 						<input
 							className="pl-1 bg-blue-900 text-white border-2 border-blue-300 rounded"
 							type="text"
