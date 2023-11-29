@@ -21,7 +21,7 @@ const Wishlist = ({ wishlist, setWishlist }) => {
         });
 
         setWishlist([...wishlist, postResponse.data]);
-        setSearchQuery('');
+        setSearchQuery("");
       } else {
         console.log("No games found.");
       }
@@ -67,26 +67,27 @@ const Wishlist = ({ wishlist, setWishlist }) => {
           wishlist.map((game) => (
             <div
               key={game.id}
-              className="flex flex-col items-center relative rounded cursor-pointer"
+              className="flex flex-col items-center relative rounded"
             >
               <img
                 src={game.background_image}
                 alt="games"
                 className="md:h-36 sm:w-80 sm:h-48 w-full rounded shadow-xl"
               />
-              <div className="absolute top-1 right-1 cursor-pointer">
-              <svg
-                width="26px"
-                height="26px"
-                viewBox="0 0 24 24"
-                onClick={() => deleteGame(game.id)}
-              >
-                <path
-                  d="M8.00191 9.41621C7.61138 9.02569 7.61138 8.39252 8.00191 8.002C8.39243 7.61147 9.0256 7.61147 9.41612 8.002L12.0057 10.5916L14.5896 8.00771C14.9801 7.61719 15.6133 7.61719 16.0038 8.00771C16.3943 8.39824 16.3943 9.0314 16.0038 9.42193L13.4199 12.0058L16.0039 14.5897C16.3944 14.9803 16.3944 15.6134 16.0039 16.004C15.6133 16.3945 14.9802 16.3945 14.5896 16.004L12.0057 13.42L9.42192 16.0038C9.03139 16.3943 8.39823 16.3943 8.00771 16.0038C7.61718 15.6133 7.61718 14.9801 8.00771 14.5896L10.5915 12.0058L8.00191 9.41621Z"
-                  fill="#ffffff"
-                />
-              </svg>
-            </div>
+              <div className="absolute top-1 right-1">
+                <svg
+                  className="cursor-pointer"
+                  width="26px"
+                  height="26px"
+                  viewBox="0 0 24 24"
+                  onClick={() => deleteGame(game.id)}
+                >
+                  <path
+                    d="M8.00191 9.41621C7.61138 9.02569 7.61138 8.39252 8.00191 8.002C8.39243 7.61147 9.0256 7.61147 9.41612 8.002L12.0057 10.5916L14.5896 8.00771C14.9801 7.61719 15.6133 7.61719 16.0038 8.00771C16.3943 8.39824 16.3943 9.0314 16.0038 9.42193L13.4199 12.0058L16.0039 14.5897C16.3944 14.9803 16.3944 15.6134 16.0039 16.004C15.6133 16.3945 14.9802 16.3945 14.5896 16.004L12.0057 13.42L9.42192 16.0038C9.03139 16.3943 8.39823 16.3943 8.00771 16.0038C7.61718 15.6133 7.61718 14.9801 8.00771 14.5896L10.5915 12.0058L8.00191 9.41621Z"
+                    fill="#ffffff"
+                  />
+                </svg>
+              </div>
               <p className="text-slate-200 font-bold text-sm absolute bottom-0 bg-slate-800/80 text-center p-1  border-t border-slate-600 w-full rounded-b">
                 {game.name}
               </p>
