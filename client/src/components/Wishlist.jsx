@@ -73,7 +73,7 @@ const Wishlist = ({ wishlist, setWishlist }) => {
               <img
                 src={game.background_image}
                 alt="games"
-                className="md:h-36 sm:w-80 sm:h-48 w-full rounded shadow-xl border border-white/40"
+                className="md:h-36 sm:w-80 sm:h-48 w-full rounded shadow-xl"
                 onDoubleClick={() => deleteGame(game.id)}
               />
               <p className="text-slate-200 font-bold text-sm absolute bottom-0 bg-slate-800/80 text-center p-1  border-t border-slate-600 w-full rounded-b">
