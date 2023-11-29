@@ -60,7 +60,7 @@ const Wishlist = ({ wishlist, setWishlist }) => {
       />
       <div
         id="wishlist"
-        className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2"
       >
         {/* Render wishlist items */}
         {wishlist.length !== 0 ? (
@@ -72,7 +72,7 @@ const Wishlist = ({ wishlist, setWishlist }) => {
               <img
                 src={game.background_image}
                 alt="games"
-                className="md:h-36 sm:w-80 sm:h-48 w-full rounded shadow-xl"
+                className="lg:w-84 lg:h-40 md:h-56 w-full rounded shadow-xl"
               />
               <div className="absolute top-1 right-1">
                 <svg
@@ -88,7 +88,7 @@ const Wishlist = ({ wishlist, setWishlist }) => {
                   />
                 </svg>
               </div>
-              <p className="text-slate-200 font-bold text-sm absolute bottom-0 bg-slate-800/80 text-center p-1  border-t border-slate-600 w-full rounded-b">
+              <p className="absolute bottom-0 font-bold text-center bg-slate-800/80 text-slate-200  p-1 border-t border-slate-600 w-full rounded-b">
                 {game.name}
               </p>
               {/* <p className="text-slate-200 font-bold text-sm">
