@@ -1,4 +1,6 @@
-# Steam Clone
+# Vapour
+
+It's like Steam, but not always.
 
 ## Overview
 
