@@ -36,8 +36,8 @@ const Wishlist = () => {
                 });
     
                 // Update the wishlist state based on the response from the POST request
-                setWishlist([...wishlist, postResponse.data]); // Assuming postResponse.data contains the added game
-    
+                setWishlist([...wishlist, postResponse.data]);
+                setSearchQuery('');
             } else {
                 console.log('No games found.');
             }
