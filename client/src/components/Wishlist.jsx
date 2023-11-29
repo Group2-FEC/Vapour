@@ -39,7 +39,7 @@ const Wishlist = ({ wishlist, setWishlist }) => {
       
       // Extract game names from fetched game data
       const gameNames = gameData.map((game) => game.name);
-      const limitedSuggestions = gameNames.slice(0, 5);
+      const limitedSuggestions = gameNames.slice(0, 7);
 
       setSuggestions(limitedSuggestions);
     } catch (error) {
@@ -90,7 +90,7 @@ const Wishlist = ({ wishlist, setWishlist }) => {
   };
 
   return (
-    <div className="w-5/6 mx-auto flex flex-col gap-2 rounded-b bg-gradient-to-r from-blue-200/40 to-blue-500/40 mb-10 p-2 mb-10">
+    <div className="w-5/6 mx-auto relative flex-col gap-2 rounded-b bg-gradient-to-r from-blue-200/40 to-blue-500/40 mb-10 p-2 mb-10">
       <input
         type="text"
         name="search"
