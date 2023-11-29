@@ -3,6 +3,7 @@ import { useState } from "react";
 
 const Wishlist = ({ wishlist, setWishlist }) => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
 
   const handleSearch = async () => {
     try {
@@ -28,6 +29,53 @@ const Wishlist = ({ wishlist, setWishlist }) => {
     } catch (error) {
       console.error(error);
     }
+        setSuggestions([]);
+  };
+
+   const fetchGameSuggestions = async (inputValue) => {
+    try {
+      const response = await axios.get(`api/games/${inputValue}`);
+      const gameData = response.data;
+      
+      // Extract game names from fetched game data
+      const gameNames = gameData.map((game) => game.name);
+      const limitedSuggestions = gameNames.slice(0, 7);
+
+      setSuggestions(limitedSuggestions);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleInputChange = (inputValue) => {
+    setSearchQuery(inputValue);
+    fetchGameSuggestions(inputValue);
+  };
+
+  const handleSuggestionClick = async (selectedGame) => {
+    setSearchQuery(selectedGame);
+    setSuggestions([]); // Clear suggestions after selecting
+  
+    try {
+      const response = await axios.get(`api/games/${selectedGame}`);
+      const gameData = response.data;
+      if (gameData.length > 0) {
+        const firstGame = gameData[0];
+        const postResponse = await axios.post("api/videogames", {
+          name: firstGame.name,
+          background_image: firstGame.background_image,
+          esrb_rating: firstGame.esrb_rating,
+          rating: firstGame.rating,
+          released: firstGame.released,
+        });
+        setWishlist([...wishlist, postResponse.data]);
+        setSearchQuery(""); // Clear the search bar
+      } else {
+        console.log("No games found.");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const deleteGame = async (gameId) => {
@@ -41,9 +89,8 @@ const Wishlist = ({ wishlist, setWishlist }) => {
     }
   };
 
-  //onClick render wishlist and remove library component
   return (
-    <div className="w-5/6 mx-auto flex flex-col gap-2 rounded-b bg-gradient-to-r from-blue-200/40 to-blue-500/40 mb-10 p-2 mb-10">
+    <div className="w-5/6 mx-auto relative flex-col gap-2 rounded-b bg-gradient-to-r from-blue-200/40 to-blue-500/40 mb-10 p-2 mb-10">
       <input
         type="text"
         name="search"
@@ -51,13 +98,24 @@ const Wishlist = ({ wishlist, setWishlist }) => {
         placeholder="Add to Wishlist"
         className="p-1 mb-2 w-48"
         value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
+        onChange={(e) => handleInputChange(e.target.value)}
         onKeyPress={(e) => {
           if (e.key === "Enter") {
             handleSearch();
           }
         }}
       />
+      {/* Suggestions */}
+      <div className="absolute bg-white border border-gray-300 rounded-b z-10">
+        {suggestions.map((suggestion, index) => (
+          <div key={index} 
+          className="p-2 hover:bg-gray-200"
+          onClick={() => handleSuggestionClick(suggestion)}
+          >
+          {suggestion}
+          </div>
+        ))}
+      </div>
       <div
         id="wishlist"
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2"
@@ -91,13 +149,6 @@ const Wishlist = ({ wishlist, setWishlist }) => {
               <p className="absolute bottom-0 font-bold text-center bg-slate-800/80 text-slate-200  p-1 border-t border-slate-600 w-full rounded-b">
                 {game.name}
               </p>
-              {/* <p className="text-slate-200 font-bold text-sm">
-                {game.esrb_rating}
-              </p> */}
-              {/* <p className="text-slate-200 font-bold text-sm">{game.rating}</p> */}
-              {/* <p className="text-slate-200 font-bold text-sm">
-                {game.released}
-              </p> */}
             </div>
           ))
         ) : (
