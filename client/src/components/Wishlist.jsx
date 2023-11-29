@@ -53,7 +53,7 @@ const Wishlist = ({ wishlist, setWishlist }) => {
         className="p-1 mb-2 w-48"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
-        onKeyPress={(e) => {
+        onKeyDown={(e) => {
           if (e.key === "Enter") {
             handleSearch();
           }
