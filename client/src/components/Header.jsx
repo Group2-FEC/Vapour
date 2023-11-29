@@ -1,18 +1,10 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import search from "../img/icons/search.png";
 import notification from "../img/icons/notification.png";
 import announcement from "../img/icons/announcement.png";
 import userImage from "../img/icons/user.png";
+import Navbar from "./Navbar";
 
-const Header = () => {
-	const storeLinks = ["Home", "Library", "Upcoming", "Wishlist"];
-	const [isMenuOpen, setMenuOpen] = useState(false);
-
-	const toggleMenu = () => {
-		setMenuOpen(!isMenuOpen);
-	};
-
+const Header = ({ wishlist }) => {
 	return (
 		<div className="bg-slate-700/70 border-b border-gray-600">
 			<header>
@@ -41,43 +33,12 @@ const Header = () => {
 
 				<div
 					id="storeLinks"
-					className="w-5/6 mx-auto flex justify-between items-center bg-gradient-to-r from-blue-400 to-blue-800 rounded-t overflow-hidden"
+					className="w-5/6 mx-auto flex flex-col md:flex-row md:justify-between justify-center items-center bg-gradient-to-r from-blue-400 to-blue-800 rounded-t gap-3 p-2"
 				>
-					<div className="hidden md:flex flex-col md:flex-row gap-5 items-center pr-1 pl-2 py-2">
-						{storeLinks.map((link, index) => (
-							<Link
-								key={index}
-								to={index === 0 ? "/" : `/${link.toLowerCase()}`}
-								className="text-slate-100 font-bold text-sm uppercase"
-							>
-								{link}
-							</Link>
-						))}
+					<div className="flex gap-2 text-white font-bold">
+						<Navbar wishlist={wishlist} />
 					</div>
-
-					<div
-						id="menu"
-						className="space-y-2 px-2 md:hidden"
-						onClick={toggleMenu}
-					>
-						<div className="w-8 h-0.5 bg-gray-600"></div>
-						<div className="w-8 h-0.5 bg-gray-600"></div>
-						<div className="w-8 h-0.5 bg-gray-600"></div>
-					</div>
-
-					<div className={`md:hidden ${isMenuOpen ? "block" : "hidden"}`}>
-						{/* Dropdown content here */}
-						{storeLinks.map((link, index) => (
-							<p
-								key={index}
-								className="text-slate-100 font-bold text-sm uppercase"
-							>
-								{link}
-							</p>
-						))}
-					</div>
-
-					<div className="flex p-1 mt-2 md:mt-0 md:self-end w-full md:w-auto">
+					<div className="flex justify-center md:justify-end">
 						<input
 							className="pl-1 bg-blue-900 text-white border-2 border-blue-300 rounded"
 							type="text"

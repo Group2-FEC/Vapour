@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { Route, Routes } from "react-router-dom";
 import Header from "./Header";
@@ -12,6 +12,7 @@ import GameCarousel from "./GameCarousel";
 const App = () => {
 	const [gameInfo, setGameInfo] = useState({});
 	const [showInfo, setShowInfo] = useState(false);
+	const [wishlist, setWishlist] = useState([]);
 
 	const getGameDetails = async (id) => {
 		try {
@@ -23,13 +24,26 @@ const App = () => {
 		}
 	};
 
+	const getWishlist = async () => {
+		try {
+			const response = await axios.get("api/videogames");
+			setWishlist(response.data);
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	useEffect(() => {
+		getWishlist();
+	}, []);
+
 	const handleCloseButton = () => {
 		setShowInfo(!showInfo);
 	};
 
 	return (
 		<div className="min-h-[100dvh]">
-			<Header />
+			<Header wishlist={wishlist} />
 			<Routes>
 				<Route
 					path="/"
@@ -43,7 +57,10 @@ const App = () => {
 					path="/library"
 					element={<Library getGameDetails={getGameDetails} />}
 				></Route>
-				<Route path="/wishlist" element={<Wishlist />}></Route>
+				<Route
+					path="/wishlist"
+					element={<Wishlist wishlist={wishlist} setWishlist={setWishlist} />}
+				></Route>
 			</Routes>
 			{showInfo && (
 				<GameInfo gameInfo={gameInfo} handleCloseButton={handleCloseButton} />
