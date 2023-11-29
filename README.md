@@ -4,7 +4,7 @@ It's like Steam, but not always.
 
 ## Overview
 
-This project is a Steam video game clone developed using React, Express, Axios, and postgreSQL. It utilizes the RAWG API to fetch and display some of the game data. The goal is to create a user-friendly interface that mimics the Steam platform for browsing and discovering video games.
+This project is a Steam clone developed using React, Express, Axios, and postgreSQL. It utilizes the RAWG API to fetch and display some of the game data. The goal is to mimic the Steam platform for browsing and discovering video games.
 
 ## Features
 
