@@ -23,13 +23,11 @@ const Wishlist = () => {
         try {
             const response = await axios.get(`api/games/${searchQuery}`);
             const gameData = response.data;
-            console.log(gameData[0])
+    
             if (gameData.length > 0) {
                 const firstGame = gameData[0];
-                // const firstGameResponse = await axios.get(`api/games/${firstGame.name}`);
-                // const firstGame = firstGameResponse.data;
-    
-                await axios.post("api/videogames", {
+                
+                const postResponse = await axios.post("api/videogames", {
                     name: firstGame.name,
                     background_image: firstGame.background_image,
                     esrb_rating: firstGame.esrb_rating,
@@ -37,7 +35,9 @@ const Wishlist = () => {
                     released: firstGame.released
                 });
     
-                setWishlist([...wishlist, firstGame]);
+                // Update the wishlist state based on the response from the POST request
+                setWishlist([...wishlist, postResponse.data]); // Assuming postResponse.data contains the added game
+    
             } else {
                 console.log('No games found.');
             }
