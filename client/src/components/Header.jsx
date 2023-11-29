@@ -35,7 +35,7 @@ const Header = ({ wishlist }) => {
 					id="storeLinks"
 					className="w-5/6 mx-auto flex flex-col md:flex-row md:justify-between justify-center items-center bg-gradient-to-r from-blue-400 to-blue-800 rounded-t gap-3 p-2"
 				>
-					<div className="flex gap-5 text-white font-bold">
+					<div className="flex gap-2 text-white font-bold">
 						<Navbar wishlist={wishlist} />
 					</div>
 					<div className="flex justify-center md:justify-end">
