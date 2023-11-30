@@ -122,13 +122,13 @@ const Wishlist = ({ wishlist, setWishlist }) => {
       {/* Suggestions */}
       <div
         className={`${
-          suggestions.length !== 0 ? "absolute" : "hidden"
-        } bg-slate-700 border-2 border-slate-900 rounded text-white z-10 w-80`}
+          suggestions.length !== 0 ? "absolute left-30": "hidden"
+        } bg-slate-700 border-2 border-slate-900 rounded text-white z-10 w-96`}
       >
         {suggestions.map((suggestion, index) => (
           <div
             key={index}
-            className="p-2 hover:bg-gray-200"
+            className="p-2 hover:bg-gray-500"
             onClick={() => handleSuggestionClick(suggestion)}
           >
             {suggestion}
