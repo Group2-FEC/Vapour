@@ -1,4 +1,3 @@
-import search from "../img/icons/search.png";
 import notification from "../img/icons/notification.png";
 import announcement from "../img/icons/announcement.png";
 import userImage from "../img/icons/user.png";
