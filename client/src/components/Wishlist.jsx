@@ -35,8 +35,10 @@ const Wishlist = ({ wishlist, setWishlist }) => {
   };
 
   const handleSearchOnClick = () => {
-   searchQuery ? (handleSearch(new Event('click'))) : (console.log('Please eneter a search query'));
-  }
+    searchQuery
+      ? handleSearch(new Event("click"))
+      : console.log("Please eneter a search query");
+  };
 
   const getAndSetGameSuggestions = async (inputValue) => {
     try {
@@ -91,10 +93,12 @@ const Wishlist = ({ wishlist, setWishlist }) => {
         onSubmit={searchQuery !== "" ? handleSearch : mustEnterWishlistItem}
         className="flex items-center mb-2 gap-2"
       >
-        <img src={search} alt="search" 
-        className={"w-6 h-6 cursor-pointer"}
-        onClick={handleSearchOnClick}
-         />
+        <img
+          src={search}
+          alt="search"
+          className={"w-6 h-6 cursor-pointer"}
+          onClick={handleSearchOnClick}
+        />
         <input
           type="text"
           name="search"
@@ -108,7 +112,9 @@ const Wishlist = ({ wishlist, setWishlist }) => {
       {/* Suggestions */}
       <div
         className={`${
-          suggestions.length !== 0 ? "absolute left-30 overflow-y-auto max-h-80": "hidden"
+          suggestions.length !== 0
+            ? "absolute left-30 overflow-y-auto max-h-80"
+            : "hidden"
         } bg-slate-700 border-2 border-slate-900 rounded text-white z-10 w-96`}
       >
         {suggestions.map((suggestion, index) => (

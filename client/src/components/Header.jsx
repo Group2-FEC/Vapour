@@ -24,6 +24,7 @@ const Header = ({ wishlist }) => {
           <img
             src={announcement}
             alt="announcement"
+            className="sm:w-10 w-8 bg-blue-200 p-2 rounded shadow-lg"
           />
           <img
             className="sm:w-10 w-8 bg-green-200 p-2 rounded shadow-lg"
