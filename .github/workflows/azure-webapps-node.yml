@@ -24,7 +24,7 @@ on:
 
 env:
   AZURE_WEBAPP_NAME: vapor    # set this to your application's name
-  AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
+  AZURE_WEBAPP_PACKAGE_PATH: ''      # set this to the path to your web app project, defaults to the repository root
   NODE_VERSION: '20.x'                # set this to the node version to use
 
 permissions:
@@ -41,18 +41,26 @@ jobs:
       with:
         node-version: ${{ env.NODE_VERSION }}
         cache: 'npm'
-
+        
     - name: npm install, build, and test
       run: |
         npm install
         npm run build --if-present
         npm run test --if-present
 
+    - name: Build Client App
+      run: |
+        cd client
+        npm install
+        npm run build        
+
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v3
       with:
         name: node-app
-        path: .
+        path: |
+          server/**
+          client/dist/**
 
   deploy:
     permissions:
