@@ -33,20 +33,10 @@ const Header = ({ wishlist }) => {
 
 				<div
 					id="storeLinks"
-					className="w-5/6 mx-auto flex flex-col md:flex-row md:justify-between justify-center items-center bg-gradient-to-r from-blue-400 to-blue-800 rounded-t gap-3 p-2"
+					className="w-5/6 mx-auto flex md:justify-between justify-center items-center bg-gradient-to-r from-blue-400 to-blue-800 rounded-t p-2"
 				>
-					<div className="flex gap-2 text-white font-bold">
+					<div className="flex gap-2 text-white font-bold sm:gap-5">
 						<Navbar wishlist={wishlist} />
-					</div>
-					<div className="flex justify-center md:justify-end">
-						<input
-							className="pl-1 bg-blue-900 text-white border-2 border-blue-300 rounded"
-							type="text"
-							name="search"
-							id="search"
-							placeholder="search"
-						/>
-						<img className="w-8 h-8 p-1 invert" src={search} alt="search" />
 					</div>
 				</div>
 			</header>
