@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import search from "../img/icons/search.png";
+import search from "../assets/icons/search.png";
 
 const Wishlist = ({ wishlist, setWishlist }) => {
   const [searchQuery, setSearchQuery] = useState("");
