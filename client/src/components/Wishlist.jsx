@@ -5,6 +5,8 @@ import search from "../assets/icons/search.png";
 const Wishlist = ({ wishlist, setWishlist }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+  const [selectedIndex, setSelectedIndex] = useState(null);
+
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -87,6 +89,60 @@ const Wishlist = ({ wishlist, setWishlist }) => {
     e.target[0].placeholder = "Please search for an item";
   };
 
+  const handleKeyDown = async (e) => {
+    if (e.key === "ArrowUp" || e.key === "ArrowDown") {
+      e.preventDefault();
+      if (suggestions.length > 0) {
+        let newIndex;
+        if (e.key === "ArrowUp") {
+          newIndex = suggestions.length - 1 === 0 ? 0 : (suggestions.length + selectedIndex - 1) % suggestions.length;
+        } else {
+          newIndex = (selectedIndex + 1) % suggestions.length;
+        }
+        setSelectedIndex(newIndex);
+      }
+    } else if (e.key === "Enter") {
+      if (selectedIndex !== null) {
+        e.preventDefault();
+        handleSuggestionClick(suggestions[selectedIndex]);
+        setSelectedIndex(null);
+      } else if (searchQuery.trim() !== "") {
+        e.preventDefault();
+        try {
+          const response = await axios.get(`api/games/${searchQuery}`);
+          const gameData = response.data;
+          console.log(gameData[0]);
+          if (gameData.length > 0) {
+            const firstGame = gameData[0];
+  
+            const newWishlistItem = await axios.post("api/videogames", {
+              name: firstGame.name,
+              background_image: firstGame.background_image,
+              esrb_rating: firstGame.esrb_rating,
+              rating: firstGame.rating,
+              released: firstGame.released,
+            });
+  
+            setWishlist([...wishlist, newWishlistItem.data]);
+            setSearchQuery("");
+          } else {
+            console.log("No games found.");
+          }
+        } catch (error) {
+          console.error(error);
+        }
+        setSuggestions([]);
+      } else {
+        console.log("Please search for a game");
+      }
+    }
+  };
+  
+
+  const handleSuggestionMouseEnter = (index) => {
+    setSelectedIndex(index);
+  };
+
   return (
     <div className="w-5/6 mx-auto flex-col gap-2 rounded-b bg-gradient-to-r from-blue-200/40 to-blue-500/40 mb-10 p-2 mb-10">
       <form
@@ -106,6 +162,7 @@ const Wishlist = ({ wishlist, setWishlist }) => {
           autoFocus
           className="p-1 bg-slate-400/20 text-white border-2 border-slate-950 rounded md:w-1/3 placeholder:text-white w-full"
           value={searchQuery}
+          onKeyDown={handleKeyDown}
           onChange={(e) => handleInputChange(e.target.value)}
         />
       </form>
@@ -119,9 +176,12 @@ const Wishlist = ({ wishlist, setWishlist }) => {
       >
         {suggestions.map((suggestion, index) => (
           <div
-            key={index}
-            className="p-2 hover:bg-gray-500"
-            onClick={() => handleSuggestionClick(suggestion)}
+          key={index}
+          className={`p-2 ${
+            index === selectedIndex ? "bg-gray-500" : ""
+          } hover:bg-gray-500`}
+          onMouseEnter={() => handleSuggestionMouseEnter(index)}
+          onClick={() => handleSuggestionClick(suggestion)}
           >
             {suggestion}
           </div>
