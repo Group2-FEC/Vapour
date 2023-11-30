@@ -42,7 +42,7 @@ const Wishlist = ({ wishlist, setWishlist }) => {
 
         // Extract game names from fetched game data
         const gameNames = gameData.map((game) => game.name);
-        const tenSuggestions = gameNames.slice(0, 9);
+        const tenSuggestions = gameNames.slice(0, 20);
         setSuggestions(tenSuggestions);
       } else {
         setSuggestions([]);
@@ -123,7 +123,7 @@ const Wishlist = ({ wishlist, setWishlist }) => {
       {/* Suggestions */}
       <div
         className={`${
-          suggestions.length !== 0 ? "absolute left-30": "hidden"
+          suggestions.length !== 0 ? "absolute left-30 overflow-y-auto max-h-80": "hidden"
         } bg-slate-700 border-2 border-slate-900 rounded text-white z-10 w-96`}
       >
         {suggestions.map((suggestion, index) => (
