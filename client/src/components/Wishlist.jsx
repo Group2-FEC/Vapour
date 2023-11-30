@@ -107,38 +107,11 @@ const Wishlist = ({ wishlist, setWishlist }) => {
         handleSuggestionClick(suggestions[selectedIndex]);
         setSelectedIndex(null);
       } else if (searchQuery.trim() !== "") {
-        e.preventDefault();
-        try {
-          const response = await axios.get(`api/games/${searchQuery}`);
-          const gameData = response.data;
-          console.log(gameData[0]);
-          if (gameData.length > 0) {
-            const firstGame = gameData[0];
-  
-            const newWishlistItem = await axios.post("api/videogames", {
-              name: firstGame.name,
-              background_image: firstGame.background_image,
-              esrb_rating: firstGame.esrb_rating,
-              rating: firstGame.rating,
-              released: firstGame.released,
-            });
-  
-            setWishlist([...wishlist, newWishlistItem.data]);
-            setSearchQuery("");
-          } else {
-            console.log("No games found.");
-          }
-        } catch (error) {
-          console.error(error);
-        }
-        setSuggestions([]);
-      } else {
-        console.log("Please search for a game");
-      }
+        handleSearch(e)
     }
-  };
+  }
+};
   
-
   const handleSuggestionMouseEnter = (index) => {
     setSelectedIndex(index);
   };
