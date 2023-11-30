@@ -42,8 +42,8 @@ const Wishlist = ({ wishlist, setWishlist }) => {
 
         // Extract game names from fetched game data
         const gameNames = gameData.map((game) => game.name);
-        const tenSuggestions = gameNames.slice(0, 20);
-        setSuggestions(tenSuggestions);
+        const twentySuggestions = gameNames.slice(0, 20);
+        setSuggestions(twentySuggestions);
       } else {
         setSuggestions([]);
       }
