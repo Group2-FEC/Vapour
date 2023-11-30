@@ -63,6 +63,7 @@ const Wishlist = ({ wishlist, setWishlist }) => {
 
   const handleSuggestionClick = async (selectedGame) => {
     setSearchQuery(selectedGame);
+    setSuggestions([]);
   };
 
   const deleteGame = async (gameId) => {
