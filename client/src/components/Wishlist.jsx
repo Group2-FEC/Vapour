@@ -34,6 +34,10 @@ const Wishlist = ({ wishlist, setWishlist }) => {
     setSuggestions([]);
   };
 
+  const handleSearchOnClick = () => {
+   searchQuery ? (handleSearch(new Event('click'))) : (console.log('Please eneter a search query'));
+  }
+
   const getAndSetGameSuggestions = async (inputValue) => {
     try {
       if (inputValue) {
@@ -109,7 +113,10 @@ const Wishlist = ({ wishlist, setWishlist }) => {
         onSubmit={searchQuery !== "" ? handleSearch : mustEnterWishlistItem}
         className="flex items-center mb-2 gap-2"
       >
-        <img src={search} alt="search" className={"w-6 h-6"} />
+        <img src={search} alt="search" 
+        className={"w-6 h-6 cursor-pointer"}
+        onClick={handleSearchOnClick}
+         />
         <input
           type="text"
           name="search"
