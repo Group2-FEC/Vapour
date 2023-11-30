@@ -1,11 +1,13 @@
 import axios from "axios";
 import { useState } from "react";
+import search from "../img/icons/search.png";
 
 const Wishlist = ({ wishlist, setWishlist }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
 
-  const handleSearch = async () => {
+  const handleSearch = async (e) => {
+    e.preventDefault();
     try {
       const response = await axios.get(`api/games/${searchQuery}`);
       const gameData = response.data;
@@ -13,7 +15,7 @@ const Wishlist = ({ wishlist, setWishlist }) => {
       if (gameData.length > 0) {
         const firstGame = gameData[0];
 
-        const postResponse = await axios.post("api/videogames", {
+        const newWishlistItem = await axios.post("api/videogames", {
           name: firstGame.name,
           background_image: firstGame.background_image,
           esrb_rating: firstGame.esrb_rating,
@@ -21,7 +23,7 @@ const Wishlist = ({ wishlist, setWishlist }) => {
           released: firstGame.released,
         });
 
-        setWishlist([...wishlist, postResponse.data]);
+        setWishlist([...wishlist, newWishlistItem.data]);
         setSearchQuery("");
       } else {
         console.log("No games found.");
@@ -29,19 +31,22 @@ const Wishlist = ({ wishlist, setWishlist }) => {
     } catch (error) {
       console.error(error);
     }
-        setSuggestions([]);
+    setSuggestions([]);
   };
 
-   const fetchGameSuggestions = async (inputValue) => {
+  const getAndSetGameSuggestions = async (inputValue) => {
     try {
-      const response = await axios.get(`api/games/${inputValue}`);
-      const gameData = response.data;
-      
-      // Extract game names from fetched game data
-      const gameNames = gameData.map((game) => game.name);
-      const limitedSuggestions = gameNames.slice(0, 7);
+      if (inputValue) {
+        const response = await axios.get(`api/games/${inputValue}`);
+        const gameData = response.data;
 
-      setSuggestions(limitedSuggestions);
+        // Extract game names from fetched game data
+        const gameNames = gameData.map((game) => game.name);
+        const tenSuggestions = gameNames.slice(0, 9);
+        setSuggestions(tenSuggestions);
+      } else {
+        setSuggestions([]);
+      }
     } catch (error) {
       console.error(error);
     }
@@ -49,13 +54,13 @@ const Wishlist = ({ wishlist, setWishlist }) => {
 
   const handleInputChange = (inputValue) => {
     setSearchQuery(inputValue);
-    fetchGameSuggestions(inputValue);
+    getAndSetGameSuggestions(inputValue);
   };
 
   const handleSuggestionClick = async (selectedGame) => {
     setSearchQuery(selectedGame);
     setSuggestions([]); // Clear suggestions after selecting
-  
+
     try {
       const response = await axios.get(`api/games/${selectedGame}`);
       const gameData = response.data;
@@ -89,30 +94,44 @@ const Wishlist = ({ wishlist, setWishlist }) => {
     }
   };
 
+  const mustEnterWishlistItem = (e) => {
+    e.preventDefault();
+    setTimeout(() => {
+      e.target[0].placeholder = "";
+    }, 2000);
+    e.target[0].placeholder = "Please search for an item";
+  };
+
   return (
-    <div className="w-5/6 mx-auto relative flex-col gap-2 rounded-b bg-gradient-to-r from-blue-200/40 to-blue-500/40 mb-10 p-2 mb-10">
-      <input
-        type="text"
-        name="search"
-        id="search"
-        placeholder="Add to Wishlist"
-        className="p-1 mb-2 w-48"
-        value={searchQuery}
-        onChange={(e) => handleInputChange(e.target.value)}
-        onKeyPress={(e) => {
-          if (e.key === "Enter") {
-            handleSearch();
-          }
-        }}
-      />
+    <div className="w-5/6 mx-auto flex-col gap-2 rounded-b bg-gradient-to-r from-blue-200/40 to-blue-500/40 mb-10 p-2 mb-10">
+      <form
+        onSubmit={searchQuery !== "" ? handleSearch : mustEnterWishlistItem}
+        className="flex items-center mb-2 gap-2"
+      >
+        <img src={search} alt="search" className={"w-6 h-6"} />
+        <input
+          type="text"
+          name="search"
+          id="search"
+          autoFocus
+          className="p-1 bg-slate-400/20 text-white border-2 border-slate-950 rounded md:w-1/3 placeholder:text-white w-full"
+          value={searchQuery}
+          onChange={(e) => handleInputChange(e.target.value)}
+        />
+      </form>
       {/* Suggestions */}
-      <div className="absolute bg-white border border-gray-300 rounded-b z-10">
+      <div
+        className={`${
+          suggestions.length !== 0 ? "absolute" : "hidden"
+        } bg-slate-700 border-2 border-slate-900 rounded text-white z-10 w-80`}
+      >
         {suggestions.map((suggestion, index) => (
-          <div key={index} 
-          className="p-2 hover:bg-gray-200"
-          onClick={() => handleSuggestionClick(suggestion)}
+          <div
+            key={index}
+            className="p-2 hover:bg-gray-200"
+            onClick={() => handleSuggestionClick(suggestion)}
           >
-          {suggestion}
+            {suggestion}
           </div>
         ))}
       </div>
