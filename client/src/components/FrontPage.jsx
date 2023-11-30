@@ -46,7 +46,7 @@ const FrontPage = ({ getGameDetails }) => {
                   {game.name}
                 </p>
                 <div className="flex items-center p-1 gap-3 text-slate-200 shadow-xl bg-gradient-to-r from-slate-800/80 to-slate-900/40 font-bold rounded-b">
-                  <img src={cart} alt="buy" className="w-8 invert pl-1" />{" "}
+                  <img src={cart} alt="buy" className="w-8 invert pl-1" />
                   <p>${game.price}</p>
                 </div>
               </div>
