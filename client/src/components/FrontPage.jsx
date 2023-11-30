@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import cart from "../assets/icons/cart.png";
 
 const FrontPage = ({ getGameDetails }) => {
   const [games, setGames] = useState([]);
@@ -33,17 +34,21 @@ const FrontPage = ({ getGameDetails }) => {
             return (
               <div
                 key={game.id}
-                className="shadow-xl cursor-pointer relative"
+                className="cursor-pointer relative"
                 onClick={() => getGameDetails(game.id)}
               >
                 <img
                   src={game.background_image}
                   alt="games"
-                  className="lg:w-84 lg:h-50 md:h-56 w-full rounded shadow-xl"
+                  className="lg:w-84 lg:h-50 md:h-56 w-full rounded"
                 />
-                <p className="absolute bottom-0 font-bold text-center bg-slate-800/80 text-slate-200 text-xl p-1 border-t border-slate-600 w-full rounded-b">
-                  {game.name} ${game.price}
+                <p className="absolute bottom-9 font-bold text-center bg-slate-800/80 text-slate-200 text-xl p-0 border-t border-b border-slate-600 w-full">
+                  {game.name}
                 </p>
+                <div className="flex items-center p-1 gap-3 text-slate-200 shadow-xl bg-gradient-to-r from-slate-800/80 to-slate-900/40 font-bold rounded-b">
+                  <img src={cart} alt="buy" className="w-8 invert pl-1" />{" "}
+                  <p>${game.price}</p>
+                </div>
               </div>
             );
           })
