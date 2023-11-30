@@ -22,7 +22,6 @@ const Header = ({ wishlist }) => {
         </div>
         <div id="userBar" className="flex gap-2">
           <img
-            className="sm:w-10 w-8 bg-sky-200 p-2 rounded shadow-lg"
             src={announcement}
             alt="announcement"
           />

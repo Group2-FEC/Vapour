@@ -34,6 +34,10 @@ const Wishlist = ({ wishlist, setWishlist }) => {
     setSuggestions([]);
   };
 
+  const handleSearchOnClick = () => {
+   searchQuery ? (handleSearch(new Event('click'))) : (console.log('Please eneter a search query'));
+  }
+
   const getAndSetGameSuggestions = async (inputValue) => {
     try {
       if (inputValue) {
@@ -42,8 +46,8 @@ const Wishlist = ({ wishlist, setWishlist }) => {
 
         // Extract game names from fetched game data
         const gameNames = gameData.map((game) => game.name);
-        const tenSuggestions = gameNames.slice(0, 9);
-        setSuggestions(tenSuggestions);
+        const twentySuggestions = gameNames.slice(0, 20);
+        setSuggestions(twentySuggestions);
       } else {
         setSuggestions([]);
       }
@@ -59,28 +63,7 @@ const Wishlist = ({ wishlist, setWishlist }) => {
 
   const handleSuggestionClick = async (selectedGame) => {
     setSearchQuery(selectedGame);
-    setSuggestions([]); // Clear suggestions after selecting
-
-    try {
-      const response = await axios.get(`api/games/${selectedGame}`);
-      const gameData = response.data;
-      if (gameData.length > 0) {
-        const firstGame = gameData[0];
-        const postResponse = await axios.post("api/videogames", {
-          name: firstGame.name,
-          background_image: firstGame.background_image,
-          esrb_rating: firstGame.esrb_rating,
-          rating: firstGame.rating,
-          released: firstGame.released,
-        });
-        setWishlist([...wishlist, postResponse.data]);
-        setSearchQuery(""); // Clear the search bar
-      } else {
-        console.log("No games found.");
-      }
-    } catch (error) {
-      console.error(error);
-    }
+    setSuggestions([]);
   };
 
   const deleteGame = async (gameId) => {
@@ -108,7 +91,10 @@ const Wishlist = ({ wishlist, setWishlist }) => {
         onSubmit={searchQuery !== "" ? handleSearch : mustEnterWishlistItem}
         className="flex items-center mb-2 gap-2"
       >
-        <img src={search} alt="search" className={"w-6 h-6"} />
+        <img src={search} alt="search" 
+        className={"w-6 h-6 cursor-pointer"}
+        onClick={handleSearchOnClick}
+         />
         <input
           type="text"
           name="search"
@@ -122,13 +108,13 @@ const Wishlist = ({ wishlist, setWishlist }) => {
       {/* Suggestions */}
       <div
         className={`${
-          suggestions.length !== 0 ? "absolute" : "hidden"
-        } bg-slate-700 border-2 border-slate-900 rounded text-white z-10 w-80`}
+          suggestions.length !== 0 ? "absolute left-30 overflow-y-auto max-h-80": "hidden"
+        } bg-slate-700 border-2 border-slate-900 rounded text-white z-10 w-96`}
       >
         {suggestions.map((suggestion, index) => (
           <div
             key={index}
-            className="p-2 hover:bg-gray-200"
+            className="p-2 hover:bg-gray-500"
             onClick={() => handleSuggestionClick(suggestion)}
           >
             {suggestion}
