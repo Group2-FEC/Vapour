@@ -59,28 +59,29 @@ const Wishlist = ({ wishlist, setWishlist }) => {
 
   const handleSuggestionClick = async (selectedGame) => {
     setSearchQuery(selectedGame);
-    setSuggestions([]); // Clear suggestions after selecting
 
-    try {
-      const response = await axios.get(`api/games/${selectedGame}`);
-      const gameData = response.data;
-      if (gameData.length > 0) {
-        const firstGame = gameData[0];
-        const postResponse = await axios.post("api/videogames", {
-          name: firstGame.name,
-          background_image: firstGame.background_image,
-          esrb_rating: firstGame.esrb_rating,
-          rating: firstGame.rating,
-          released: firstGame.released,
-        });
-        setWishlist([...wishlist, postResponse.data]);
-        setSearchQuery(""); // Clear the search bar
-      } else {
-        console.log("No games found.");
-      }
-    } catch (error) {
-      console.error(error);
-    }
+    //** This code allows a query to be made upon clicking on suggestion */
+    // setSuggestions([]); // Clear suggestions after selecting
+    // try {
+    //   const response = await axios.get(`api/games/${selectedGame}`);
+    //   const gameData = response.data;
+    //   if (gameData.length > 0) {
+    //     const firstGame = gameData[0];
+    //     const postResponse = await axios.post("api/videogames", {
+    //       name: firstGame.name,
+    //       background_image: firstGame.background_image,
+    //       esrb_rating: firstGame.esrb_rating,
+    //       rating: firstGame.rating,
+    //       released: firstGame.released,
+    //     });
+    //     setWishlist([...wishlist, postResponse.data]);
+    //     setSearchQuery(""); // Clear the search bar
+    //   } else {
+    //     console.log("No games found.");
+    //   }
+    // } catch (error) {
+    //   console.error(error);
+    // }
   };
 
   const deleteGame = async (gameId) => {
