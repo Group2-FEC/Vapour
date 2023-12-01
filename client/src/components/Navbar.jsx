@@ -11,24 +11,24 @@ const Navbar = ({ wishlist }) => {
 
   return (
     <>
-      <Link to={"/"} className={activeLink === "/" ? "underline" : ""}>
+      <Link to={"/"} className={activeLink === "/" && "underline"}>
         Home
       </Link>
       <Link
         to={"/library"}
-        className={activeLink === "/library" ? "underline" : ""}
+        className={activeLink === "/library" && "underline"}
       >
         Library
       </Link>
       <Link
         to={"/upcoming"}
-        className={location.pathname === "/upcoming" ? "underline" : ""}
+        className={activeLink === "/upcoming" && "underline"}
       >
         Upcoming
       </Link>
       <Link
         to={"/wishlist"}
-        className={location.pathname === "/wishlist" ? "underline" : ""}
+        className={activeLink === "/wishlist" && "underline"}
       >
         {wishlist.length !== 0 ? `Wishlist (${wishlist.length})` : `Wishlist`}
       </Link>
