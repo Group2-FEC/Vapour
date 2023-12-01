@@ -3,8 +3,8 @@ import announcement from "../assets/icons/announcement.png";
 import userImage from "../assets/icons/user.png";
 import logo from "../assets/icons/logo.svg";
 import Navbar from "./Navbar";
-import coinSound from "../assets/Mario-coin-sound.mp3"
 import marioWarCry from "../assets/MarioYahoo.mp3"
+import marioMushroom from "../assets/mario-mushroom-sound.mp3"
 import marioDeath from "../assets/MarioDeath.mp3"
 
 const Header = ({ wishlist }) => {
@@ -14,9 +14,9 @@ const Header = ({ wishlist }) => {
     audio.play();
   }
 
-const playCoinSound = () => {
-  const audio = new Audio(coinSound);
-  audio.volume = 0.4
+const playMarioMushroom = () => {
+  const audio = new Audio(marioMushroom);
+  audio.volume = 0.3
   audio.play();
 }
 
@@ -51,7 +51,7 @@ const playMarioDeath = () => {
             className="sm:w-10 w-8 bg-green-200 p-2 rounded shadow-lg cursor-pointer"
             src={notification}
             alt="notification"
-            onClick={playCoinSound}
+            onClick={playMarioMushroom}
           />
           <div className="flex items-center gap-1">
             <img
