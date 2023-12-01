@@ -14,7 +14,7 @@ export function GameCase({ back, spine, cover, zPos, ...props }) {
 
   useEffect(() => {
     new THREE.TextureLoader().load(cover, (texture) => {
-      console.log("Cover texture loaded", texture);
+      //console.log("Cover texture loaded", texture);
       setCoverMaterial((material) => {
         material.map = texture;
         material.needsUpdate = true;
