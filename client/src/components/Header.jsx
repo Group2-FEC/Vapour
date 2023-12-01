@@ -4,7 +4,7 @@ import userImage from "../assets/icons/user.png";
 import logo from "../assets/icons/logo.svg";
 import Navbar from "./Navbar";
 import marioWarCry from "../assets/MarioYahoo.mp3"
-import marioMushroom from "../assets/Mario-mushroom-sound.mp3"
+import marioMushroom from "../assets/MarioMushroomSound.mp3"
 import marioDeath from "../assets/MarioDeath.mp3"
 
 const Header = ({ wishlist }) => {
