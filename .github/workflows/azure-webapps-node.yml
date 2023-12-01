@@ -47,7 +47,7 @@ jobs:
           cd client
           npm install
           npm run build
-          # After building the client, copy the build output to the server's public directory
+          mkdir -p ../server/public
           cp -R dist/* ../server/public/
 
       - name: Build Server App
