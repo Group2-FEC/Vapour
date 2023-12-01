@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import GameCase from "./models/GameCase";
 import { useSpring, a } from "@react-spring/three";
+import { EffectComposer, Bloom } from "@react-three/postprocessing";
+import { Sparkles } from "@react-three/drei";
 
 const GameCaseComp = (props) => {
   const gameCover = props.cover;
@@ -36,6 +38,8 @@ const GameCaseComp = (props) => {
       >
         <directionalLight position={[1, 1, 1]} intensity={2} />
         <ambientLight intensity={0.5} />
+        <Sparkles count={2000} factor={4} scale={2000} colors={["#ffffff"]} />
+
         <GameCase
           zPos={springProps.zPos}
           position-z={springProps.zPos}
@@ -46,6 +50,13 @@ const GameCaseComp = (props) => {
           spine={gameSpine}
           back={gameBack}
         />
+        <EffectComposer>
+          <Bloom
+            luminanceThreshold={0.3}
+            luminanceSmoothing={0.9}
+            height={300}
+          />
+        </EffectComposer>
       </Canvas>
     </>
   );

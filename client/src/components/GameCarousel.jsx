@@ -30,9 +30,9 @@ const GameCarousel = () => {
   }, [color]);
 
   // Calculate the gradient colors
-  const color1 = `hsl(${(color + 0) % 360}, 0%, 50%)`; // Gray
-  const color2 = `hsl(${(color + 0) % 360}, 0%, 70%)`; // Light Gray
-  const color3 = `hsl(${(color + 0) % 360}, 0%, 30%)`; // Dark Gray
+  const color1 = `hsl(${(color + 0) % 360}, 0%, 0%)`; // Black
+  const color2 = `hsl(${(color + 0) % 360}, 0%, 30%)`; // Light Gray
+  const color3 = `hsl(${(color + 0) % 360}, 0%, 0%)`; // Black
 
   return (
     <>
@@ -48,22 +48,22 @@ const GameCarousel = () => {
         <GameCaseComp
           cover="src/assets/baldurs_gate.jpg"
           spine="src/assets/baldursgatespine.png"
-          back="/assets/baldursgate.mp4"
+          back="src/assets/baldursgate.mp4"
         />
         <GameCaseComp
           cover="src/assets/gta4.jpg"
           spine="src/assets/gta4Spine.jpg"
-          back="/assets/gta4.mp4"
+          back="src/assets/gta4.mp4"
         />
         <GameCaseComp
           cover="src/assets/spiderman2.webp"
           spine="src/assets/spidermanspine.png"
-          back="/assets/spiderman.mp4"
+          back="src/assets/spiderman.mp4"
         />
         <GameCaseComp
           cover="src/assets/starfield.jpeg"
           spine="src/assets/starfieldspine.png"
-          back="/assets/starfield.mp4"
+          back="src/assets/starfield.mp4"
         />
 
         {/* Absolute positioned sale and timer divs */}
@@ -100,6 +100,9 @@ const GameCarousel = () => {
               backgroundColor: "red",
             }}
             className="text-white text-2xl font-bold shadow-md rounded-md text-center p-2 m-1 mt-5 transition duration-300 ease-in-out pointer-events-auto animate-bounce"
+            onClick={() =>
+              window.open("https://github.com/Group2-FEC/Vapour", "_blank")
+            }
           >
             Buy Now
           </animated.button>

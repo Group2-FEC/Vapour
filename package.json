@@ -17,6 +17,8 @@
 		"prettier": "^3.1.0"
 	},
 	"dependencies": {
+		"@react-three/drei": "^9.89.0",
+		"@react-three/postprocessing": "^2.15.11",
 		"axios": "^1.6.2",
 		"dotenv": "^16.3.1",
 		"postgres": "^3.4.3",
