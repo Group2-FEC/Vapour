@@ -87,6 +87,7 @@ const Wishlist = ({ wishlist, setWishlist }) => {
 
         setWishlist([...wishlist, newWishlistItem.data]);
         setSearchQuery("");
+        playCoinSound();
       } else {
         console.log("No games found.");
       }
@@ -165,8 +166,7 @@ const Wishlist = ({ wishlist, setWishlist }) => {
           <div
             key={index}
             className="p-2 hover:bg-gray-500"
-            onClick={() => { handleSuggestionClick(suggestion); playCoinSound();
-          }}
+            onClick={() => handleSuggestionClick(suggestion)}
           >
             {suggestion}
           </div>
