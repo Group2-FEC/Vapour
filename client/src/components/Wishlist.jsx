@@ -1,10 +1,17 @@
 import axios from "axios";
 import { useState } from "react";
+import coinSound from "../assets/Mario-coin-sound.mp3"
 
 const Wishlist = ({ wishlist, setWishlist }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [error, setError] = useState(false);
+
+  const playCoinSound = () => {
+    const audio = new Audio(coinSound);
+    audio.volume = 0.4
+    audio.play();
+  }
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -158,7 +165,8 @@ const Wishlist = ({ wishlist, setWishlist }) => {
           <div
             key={index}
             className="p-2 hover:bg-gray-500"
-            onClick={() => handleSuggestionClick(suggestion)}
+            onClick={() => { handleSuggestionClick(suggestion); playCoinSound();
+          }}
           >
             {suggestion}
           </div>
