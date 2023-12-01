@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import coinSound from "../assets/Mario-coin-sound.mp3"
+import coinSound from "../assets/MarioCoinSound.mp3"
 
 const Wishlist = ({ wishlist, setWishlist }) => {
   const [searchQuery, setSearchQuery] = useState("");
