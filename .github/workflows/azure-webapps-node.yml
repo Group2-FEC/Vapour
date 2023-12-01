@@ -43,6 +43,9 @@ jobs:
         cache: 'npm'
         
     - name: npm install, build, and test
+      env:
+        DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        API_KEY: ${{ secrets.API_KEY }}
       run: |
         npm install
         npm run build --if-present
