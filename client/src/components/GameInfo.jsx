@@ -35,7 +35,7 @@ const GameInfo = ({
             </span>
           </div>
           <div>
-            <ul className="font-bold lg:flex gap-2 underline hidden">
+            <ul className="font-bold md:flex gap-2 underline hidden">
               {platforms.length !== 0 ? (
                 <>
                   {platforms.length > 5 ? (
