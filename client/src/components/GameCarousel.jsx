@@ -37,7 +37,7 @@ const GameCarousel = () => {
   return (
     <>
       <div
-        className="relative flex flex-row m-auto"
+        className="relative flex flex-row m-auto mt-10 mb-10"
         style={{
           background: `linear-gradient(45deg, ${color1}, ${color2}, ${color3})`,
           backgroundSize: "600% 600%",
