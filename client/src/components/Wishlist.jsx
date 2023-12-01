@@ -1,12 +1,10 @@
 import axios from "axios";
 import { useState } from "react";
-import search from "../assets/icons/search.png";
 
 const Wishlist = ({ wishlist, setWishlist }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-  const [selectedIndex, setSelectedIndex] = useState(null);
-
+  const [error, setError] = useState(false);
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -31,15 +29,9 @@ const Wishlist = ({ wishlist, setWishlist }) => {
         console.log("No games found.");
       }
     } catch (error) {
-      console.error(error);
+      setError(true);
     }
     setSuggestions([]);
-  };
-
-  const handleSearchOnClick = () => {
-    searchQuery
-      ? handleSearch(new Event("click"))
-      : console.log("Please eneter a search query");
   };
 
   const getAndSetGameSuggestions = async (inputValue) => {
@@ -47,8 +39,6 @@ const Wishlist = ({ wishlist, setWishlist }) => {
       if (inputValue) {
         const response = await axios.get(`api/games/${inputValue}`);
         const gameData = response.data;
-
-        // Extract game names from fetched game data
         const gameNames = gameData.map((game) => game.name);
         const twentySuggestions = gameNames.slice(0, 20);
         setSuggestions(twentySuggestions);
@@ -60,13 +50,42 @@ const Wishlist = ({ wishlist, setWishlist }) => {
     }
   };
 
-  const handleInputChange = (inputValue) => {
-    setSearchQuery(inputValue);
-    getAndSetGameSuggestions(inputValue);
+  const handleInputChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      getAndSetGameSuggestions(searchQuery);
+    }
   };
 
   const handleSuggestionClick = async (selectedGame) => {
     setSearchQuery(selectedGame);
+
+    try {
+      const response = await axios.get(`api/games/${selectedGame}`);
+      const gameData = response.data;
+
+      if (gameData.length > 0) {
+        const firstGame = gameData[0];
+        const newWishlistItem = await axios.post("api/videogames", {
+          name: firstGame.name,
+          background_image: firstGame.background_image,
+          esrb_rating: firstGame.esrb_rating,
+          rating: firstGame.rating,
+          released: firstGame.released,
+        });
+
+        setWishlist([...wishlist, newWishlistItem.data]);
+        setSearchQuery("");
+      } else {
+        console.log("No games found.");
+      }
+    } catch (error) {
+      setError(true);
+    }
     setSuggestions([]);
   };
 
@@ -89,82 +108,43 @@ const Wishlist = ({ wishlist, setWishlist }) => {
     e.target[0].placeholder = "Please search for an item";
   };
 
-  const handleKeyDown = async (e) => {
-    if (e.key === "ArrowUp" || e.key === "ArrowDown") {
-      e.preventDefault();
-      if (suggestions.length > 0) {
-        let newIndex;
-        if (e.key === "ArrowUp") {
-          newIndex = suggestions.length - 1 === 0 ? 0 : (suggestions.length + selectedIndex - 1) % suggestions.length;
-        } else {
-          newIndex = (selectedIndex + 1) % suggestions.length;
-        }
-        setSelectedIndex(newIndex);
-      }
-    } else if (e.key === "Enter") {
-      if (selectedIndex !== null) {
-        e.preventDefault();
-        handleSuggestionClick(suggestions[selectedIndex]);
-        setSelectedIndex(null);
-      } else if (searchQuery.trim() !== "") {
-        e.preventDefault();
-        try {
-          const response = await axios.get(`api/games/${searchQuery}`);
-          const gameData = response.data;
-          console.log(gameData[0]);
-          if (gameData.length > 0) {
-            const firstGame = gameData[0];
-  
-            const newWishlistItem = await axios.post("api/videogames", {
-              name: firstGame.name,
-              background_image: firstGame.background_image,
-              esrb_rating: firstGame.esrb_rating,
-              rating: firstGame.rating,
-              released: firstGame.released,
-            });
-  
-            setWishlist([...wishlist, newWishlistItem.data]);
-            setSearchQuery("");
-          } else {
-            console.log("No games found.");
-          }
-        } catch (error) {
-          console.error(error);
-        }
-        setSuggestions([]);
-      } else {
-        console.log("Please search for a game");
-      }
-    }
-  };
-  
-
-  const handleSuggestionMouseEnter = (index) => {
-    setSelectedIndex(index);
-  };
-
   return (
     <div className="w-5/6 mx-auto flex-col gap-2 rounded-b bg-gradient-to-r from-blue-200/40 to-blue-500/40 mb-10 p-2 mb-10">
+      {error && (
+        <div
+          className="bg-red-100 border-2 border-red-400 text-red-700 px-4 py-1 mb-2 rounded relative lg:w-1/2 w-full"
+          role="alert"
+        >
+          <span>Item already in wishlist.</span>
+          <span className="absolute top-0 bottom-0 right-0">
+            <svg
+              className="fill-current h-6 w-6 text-red-500"
+              role="button"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              onClick={() => setError(false)}
+            >
+              <title>Close</title>
+              <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
+            </svg>
+          </span>
+        </div>
+      )}
       <form
         onSubmit={searchQuery !== "" ? handleSearch : mustEnterWishlistItem}
         className="flex items-center mb-2 gap-2"
       >
-        <img
-          src={search}
-          alt="search"
-          className={"w-6 h-6 cursor-pointer"}
-          onClick={handleSearchOnClick}
-        />
         <input
           type="text"
           name="search"
           id="search"
           autoFocus
-          className="p-1 bg-slate-400/20 text-white border-2 border-slate-950 rounded md:w-1/3 placeholder:text-white w-full"
+          placeholder="Search"
+          className="p-1 bg-slate-400/20 text-white border-2 border-slate-950 rounded lg:w-1/2 placeholder:text-white w-full"
           value={searchQuery}
-          onKeyDown={handleKeyDown}
-          onChange={(e) => handleInputChange(e.target.value)}
-        />
+          onChange={handleInputChange}
+          onKeyDown={handleKeyPress}
+          />
       </form>
       {/* Suggestions */}
       <div
@@ -176,12 +156,9 @@ const Wishlist = ({ wishlist, setWishlist }) => {
       >
         {suggestions.map((suggestion, index) => (
           <div
-          key={index}
-          className={`p-2 ${
-            index === selectedIndex ? "bg-gray-500" : ""
-          } hover:bg-gray-500`}
-          onMouseEnter={() => handleSuggestionMouseEnter(index)}
-          onClick={() => handleSuggestionClick(suggestion)}
+            key={index}
+            className="p-2 hover:bg-gray-500"
+            onClick={() => handleSuggestionClick(suggestion)}
           >
             {suggestion}
           </div>
