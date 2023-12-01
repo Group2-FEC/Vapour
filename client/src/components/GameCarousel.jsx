@@ -46,23 +46,23 @@ const GameCarousel = () => {
       >
         {/* Place your 3D models here */}
         <GameCaseComp
-          cover="/assets/baldurs_gate.jpg"
-          spine="/assets/baldursgatespine.png"
+          cover="src/assets/baldurs_gate.jpg"
+          spine="src/assets/baldursgatespine.png"
           back="/assets/baldursgate.mp4"
         />
         <GameCaseComp
-          cover="/assets/gta4.jpg"
-          spine="/assets/gta4Spine.jpg"
+          cover="src/assets/gta4.jpg"
+          spine="src/assets/gta4Spine.jpg"
           back="/assets/gta4.mp4"
         />
         <GameCaseComp
-          cover="/assets/spiderman2.webp"
-          spine="/assets/spidermanspine.png"
+          cover="src/assets/spiderman2.webp"
+          spine="src/assets/spidermanspine.png"
           back="/assets/spiderman.mp4"
         />
         <GameCaseComp
-          cover="/assets/starfield.jpeg"
-          spine="/assets/starfieldspine.png"
+          cover="src/assets/starfield.jpeg"
+          spine="src/assets/starfieldspine.png"
           back="/assets/starfield.mp4"
         />
 

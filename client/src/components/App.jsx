@@ -44,6 +44,7 @@ const App = () => {
   return (
     <div className="min-h-[100dvh]">
       <Header wishlist={wishlist} />
+      <GameCarousel />
       <Routes>
         <Route
           path="/"
@@ -65,7 +66,6 @@ const App = () => {
       {showInfo && (
         <GameInfo gameInfo={gameInfo} handleCloseButton={handleCloseButton} />
       )}
-      <GameCarousel />
       <Footer />
     </div>
   );

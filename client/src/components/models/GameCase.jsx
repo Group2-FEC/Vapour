@@ -6,7 +6,7 @@ import { animated } from "@react-spring/three";
 
 export function GameCase({ back, spine, cover, zPos, ...props }) {
   const { nodes, materials } = useGLTF(
-    "./assets/dvd_bd_game_case_with_sample_labels.glb"
+    "./src/assets/dvd_bd_game_case_with_sample_labels.glb"
   );
   const [coverMaterial, setCoverMaterial] = useState(materials.cover.clone());
   const [spineMaterial, setSpineMaterial] = useState(materials.spine.clone());
