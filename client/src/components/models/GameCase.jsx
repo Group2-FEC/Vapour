@@ -24,7 +24,7 @@ export function GameCase({ back, spine, cover, zPos, ...props }) {
     new THREE.TextureLoader().load(
       spine,
       (texture) => {
-        console.log("Spine texture loaded", texture);
+        //console.log("Spine texture loaded", texture);
         setSpineMaterial((material) => {
           material.map = texture;
           material.needsUpdate = true;
