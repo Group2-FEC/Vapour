@@ -3,11 +3,11 @@ import { useState, useContext } from "react";
 import coinSound from "../assets/MarioCoinSound.mp3";
 import { WishContext } from "./App";
 
-const Wishlist = ({ setWishlist }) => {
+const Wishlist = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [error, setError] = useState(false);
-  const wishlist = useContext(WishContext);
+  const { wishlist, setWishlist } = useContext(WishContext);
 
   const playCoinSound = () => {
     const audio = new Audio(coinSound);
