@@ -5,7 +5,7 @@ import { WishContext } from "./App";
 const Navbar = () => {
   const location = useLocation();
   const [activeLink, setActiveLink] = useState("");
-  const wishlist = useContext(WishContext);
+  const { wishlist } = useContext(WishContext);
 
   useEffect(() => {
     setActiveLink(location.pathname);
