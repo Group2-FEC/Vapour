@@ -1,8 +1,10 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { GameDetails } from "./App";
 
-const Library = ({ getGameDetails }) => {
+const Library = () => {
   const [library, setLibrary] = useState([]);
+  const getGameDetails = useContext(GameDetails);
 
   const getLibrary = async () => {
     try {

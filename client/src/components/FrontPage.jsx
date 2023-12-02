@@ -1,9 +1,11 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import cart from "../assets/icons/cart.png";
+import { GameDetails } from "./App";
 
-const FrontPage = ({ getGameDetails }) => {
+const FrontPage = () => {
   const [games, setGames] = useState([]);
+  const getGameDetails = useContext(GameDetails);
 
   const generateRandomPrice = () => {
     return (Math.random() * (70 - 35) + 35).toFixed(2);
