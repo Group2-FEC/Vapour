@@ -3,27 +3,25 @@ import announcement from "../assets/icons/announcement.png";
 import userImage from "../assets/icons/user.png";
 import logo from "../assets/icons/logo.svg";
 import Navbar from "./Navbar";
-import marioWarCry from "../assets/MarioYahoo.mp3"
-import marioMushroom from "../assets/MarioMushroomSound.mp3"
-import marioDeath from "../assets/MarioDeath.mp3"
-
-const Header = ({ wishlist }) => {
-  
+import marioWarCry from "../assets/MarioYahoo.mp3";
+import marioMushroom from "../assets/MarioMushroomSound.mp3";
+import marioDeath from "../assets/MarioDeath.mp3";
+const Header = () => {
   const playMarioWarCry = () => {
     const audio = new Audio(marioWarCry);
     audio.play();
-  }
+  };
 
-const playMarioMushroom = () => {
-  const audio = new Audio(marioMushroom);
-  audio.volume = 0.3
-  audio.play();
-}
+  const playMarioMushroom = () => {
+    const audio = new Audio(marioMushroom);
+    audio.volume = 0.3;
+    audio.play();
+  };
 
-const playMarioDeath = () => {
-  const audio = new Audio(marioDeath);
-  audio.play();
-}
+  const playMarioDeath = () => {
+    const audio = new Audio(marioDeath);
+    audio.play();
+  };
 
   return (
     <header className="relative bg-slate-700/70 border-b border-gray-600">
@@ -38,7 +36,7 @@ const playMarioDeath = () => {
         className="w-5/6 mx-auto flex sm:justify-between sm:flex-row flex-col sm:items-center items-end justify-center bg-gradient-to-r from-blue-400 to-blue-800 rounded-t p-2"
       >
         <div className="flex gap-2 text-white font-bold sm:gap-5 sm:order-first order-last">
-          <Navbar wishlist={wishlist} />
+          <Navbar/>
         </div>
         <div id="userBar" className="flex gap-2">
           <img

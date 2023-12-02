@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext } from "react";
 import axios from "axios";
 import { Route, Routes } from "react-router-dom";
 import Header from "./Header";
@@ -9,6 +9,10 @@ import Wishlist from "./Wishlist";
 import Footer from "./Footer";
 import Upcoming from "./Upcoming";
 import GameCarousel from "./GameCarousel";
+const WishContext = createContext();
+export { WishContext };
+const GameContext = createContext();
+export { GameContext };
 const App = () => {
   const [gameInfo, setGameInfo] = useState({});
   const [showInfo, setShowInfo] = useState(false);
@@ -42,30 +46,50 @@ const App = () => {
   };
 
   return (
+    //Routes ruins the beauty of useContext
+    //I couldn't sandwich FrontPage, Upcoming, and Library together with GameContext.
     <div className="min-h-[100dvh]">
-      <Header wishlist={wishlist} />
-      <GameCarousel />
+      <WishContext.Provider value={wishlist}>
+        <Header />
+      </WishContext.Provider>
       <Routes>
         <Route
           path="/"
-          element={<FrontPage getGameDetails={getGameDetails} />}
+          element={
+            <GameContext.Provider value={getGameDetails}>
+              <FrontPage />
+            </GameContext.Provider>
+          }
         ></Route>
         <Route
           path="/upcoming"
-          element={<Upcoming getGameDetails={getGameDetails} />}
+          element={
+            <GameContext.Provider value={getGameDetails}>
+              <Upcoming />
+            </GameContext.Provider>
+          }
         ></Route>
         <Route
           path="/library"
-          element={<Library getGameDetails={getGameDetails} />}
+          element={
+            <GameContext.Provider value={getGameDetails}>
+              <Library />
+            </GameContext.Provider>
+          }
         ></Route>
         <Route
           path="/wishlist"
-          element={<Wishlist wishlist={wishlist} setWishlist={setWishlist} />}
+          element={
+            <WishContext.Provider value={wishlist}>
+              <Wishlist setWishlist={setWishlist} />
+            </WishContext.Provider>
+          }
         ></Route>
       </Routes>
       {showInfo && (
         <GameInfo gameInfo={gameInfo} handleCloseButton={handleCloseButton} />
       )}
+      <GameCarousel />
       <Footer />
     </div>
   );

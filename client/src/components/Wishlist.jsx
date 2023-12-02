@@ -1,17 +1,19 @@
 import axios from "axios";
-import { useState } from "react";
-import coinSound from "../assets/MarioCoinSound.mp3"
+import { useState, useContext } from "react";
+import coinSound from "../assets/MarioCoinSound.mp3";
+import { WishContext } from "./App";
 
-const Wishlist = ({ wishlist, setWishlist }) => {
+const Wishlist = ({ setWishlist }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [error, setError] = useState(false);
+  const wishlist = useContext(WishContext);
 
   const playCoinSound = () => {
     const audio = new Audio(coinSound);
-    audio.volume = 0.4
+    audio.volume = 0.4;
     audio.play();
-  }
+  };
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -62,7 +64,7 @@ const Wishlist = ({ wishlist, setWishlist }) => {
   };
 
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       e.preventDefault();
       getAndSetGameSuggestions(searchQuery);
     }
@@ -118,42 +120,44 @@ const Wishlist = ({ wishlist, setWishlist }) => {
 
   return (
     <div className="w-5/6 mx-auto flex-col gap-2 rounded-b bg-gradient-to-r from-blue-200/40 to-blue-500/40 mb-10 p-2 mb-10">
-      {error && (
-        <div
-          className="bg-red-100 border-2 border-red-400 text-red-700 px-4 py-1 mb-2 rounded relative lg:w-1/2 w-full"
-          role="alert"
+      <div className="flex md:flex-row flex-col mb-2 gap-2">
+        {error && (
+          <div
+            className="bg-red-100 border-2 border-red-400 text-red-700 px-4 py-1 rounded relative md:w-1/2 w-full md:order-1"
+            role="alert"
+          >
+            <span>Item already in wishlist!</span>
+            <span className="absolute top-0 bottom-0 right-0">
+              <svg
+                className="fill-current h-6 w-6 text-red-500"
+                role="button"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                onClick={() => setError(false)}
+              >
+                <title>Close</title>
+                <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
+              </svg>
+            </span>
+          </div>
+        )}
+        <form
+          onSubmit={searchQuery !== "" ? handleSearch : mustEnterWishlistItem}
+          className="md:w-1/2 w-full"
         >
-          <span>Item already in wishlist.</span>
-          <span className="absolute top-0 bottom-0 right-0">
-            <svg
-              className="fill-current h-6 w-6 text-red-500"
-              role="button"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              onClick={() => setError(false)}
-            >
-              <title>Close</title>
-              <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
-            </svg>
-          </span>
-        </div>
-      )}
-      <form
-        onSubmit={searchQuery !== "" ? handleSearch : mustEnterWishlistItem}
-        className="flex items-center mb-2 gap-2"
-      >
-        <input
-          type="text"
-          name="search"
-          id="search"
-          autoFocus
-          placeholder="Search"
-          className="p-1 bg-slate-400/20 text-white border-2 border-slate-950 rounded lg:w-1/2 placeholder:text-white w-full"
-          value={searchQuery}
-          onChange={handleInputChange}
-          onKeyDown={handleKeyPress}
+          <input
+            type="text"
+            name="search"
+            id="search"
+            autoFocus
+            placeholder="Search"
+            className="p-1 bg-slate-400/20 text-white border-2 border-slate-950 rounded placeholder:text-white w-full"
+            value={searchQuery}
+            onChange={handleInputChange}
+            onKeyDown={handleKeyPress}
           />
-      </form>
+        </form>
+      </div>
       {/* Suggestions */}
       <div
         className={`${
