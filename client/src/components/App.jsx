@@ -46,46 +46,18 @@ const App = () => {
   };
 
   return (
-    //Routes ruins the beauty of useContext
-    //I couldn't sandwich FrontPage, Upcoming, and Library together with GameContext.
     <div className="min-h-[100dvh]">
-      <WishContext.Provider value={wishlist}>
+      <WishContext.Provider value={{ wishlist, setWishlist }}>
         <Header />
+        <GameContext.Provider value={getGameDetails}>
+          <Routes>
+            <Route path="/" element={<FrontPage />}></Route>
+            <Route path="/upcoming" element={<Upcoming />}></Route>
+            <Route path="/library" element={<Library />}></Route>
+            <Route path="/wishlist" element={<Wishlist />}></Route>
+          </Routes>
+        </GameContext.Provider>
       </WishContext.Provider>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <GameContext.Provider value={getGameDetails}>
-              <FrontPage />
-            </GameContext.Provider>
-          }
-        ></Route>
-        <Route
-          path="/upcoming"
-          element={
-            <GameContext.Provider value={getGameDetails}>
-              <Upcoming />
-            </GameContext.Provider>
-          }
-        ></Route>
-        <Route
-          path="/library"
-          element={
-            <GameContext.Provider value={getGameDetails}>
-              <Library />
-            </GameContext.Provider>
-          }
-        ></Route>
-        <Route
-          path="/wishlist"
-          element={
-            <WishContext.Provider value={wishlist}>
-              <Wishlist setWishlist={setWishlist} />
-            </WishContext.Provider>
-          }
-        ></Route>
-      </Routes>
       {showInfo && (
         <GameInfo gameInfo={gameInfo} handleCloseButton={handleCloseButton} />
       )}
