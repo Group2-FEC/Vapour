@@ -61,6 +61,7 @@ const App = () => {
       {showInfo && (
         <GameInfo gameInfo={gameInfo} handleCloseButton={handleCloseButton} />
       )}
+      <GameCarousel />
       <Footer />
     </div>
   );
