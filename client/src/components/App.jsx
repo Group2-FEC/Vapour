@@ -11,8 +11,8 @@ import Upcoming from "./Upcoming";
 import GameCarousel from "./GameCarousel";
 const WishContext = createContext();
 export { WishContext };
-const GameDetails = createContext();
-export { GameDetails };
+const GameContext = createContext();
+export { GameContext };
 const App = () => {
   const [gameInfo, setGameInfo] = useState({});
   const [showInfo, setShowInfo] = useState(false);
@@ -47,7 +47,7 @@ const App = () => {
 
   return (
     //Routes ruins the beauty of useContext
-    //I couldn't sandwich FrontPage, Upcoming, and Library together with GameDetails.
+    //I couldn't sandwich FrontPage, Upcoming, and Library together with GameContext.
     <div className="min-h-[100dvh]">
       <WishContext.Provider value={wishlist}>
         <Header />
@@ -56,25 +56,25 @@ const App = () => {
         <Route
           path="/"
           element={
-            <GameDetails.Provider value={getGameDetails}>
+            <GameContext.Provider value={getGameDetails}>
               <FrontPage />
-            </GameDetails.Provider>
+            </GameContext.Provider>
           }
         ></Route>
         <Route
           path="/upcoming"
           element={
-            <GameDetails.Provider value={getGameDetails}>
+            <GameContext.Provider value={getGameDetails}>
               <Upcoming />
-            </GameDetails.Provider>
+            </GameContext.Provider>
           }
         ></Route>
         <Route
           path="/library"
           element={
-            <GameDetails.Provider value={getGameDetails}>
+            <GameContext.Provider value={getGameDetails}>
               <Library />
-            </GameDetails.Provider>
+            </GameContext.Provider>
           }
         ></Route>
         <Route
