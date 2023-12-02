@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useEffect, useState, useContext } from "react";
-import { GameDetails } from "./App";
+import { GameContext } from "./App";
 const Upcoming = () => {
   const [upcoming, setUpcoming] = useState([]);
   const notFoundImg = `https://placehold.co/600x400@2x/png?text=Image+Not+Found`;
-  const getGameDetails = useContext(GameDetails);
+  const getGameDetails = useContext(GameContext);
 
   const getUpcomingGames = async () => {
     try {
