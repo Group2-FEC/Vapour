@@ -35,7 +35,7 @@ const GameInfo = ({
             </span>
           </div>
           <div>
-            <ul className="font-bold md:flex gap-2 underline hidden">
+            <ul className="font-bold md:flex gap-2 underline hidden text-sm lg:text-base">
               {platforms.length !== 0 ? (
                 <>
                   {platforms.length > 5 ? (
@@ -61,7 +61,10 @@ const GameInfo = ({
           <div
             className="md:flex flex-col text-slate-950 gap-4 bg-blue-200/70 rounded p-4 hidden"
             dangerouslySetInnerHTML={{
-              __html: description.slice(0, 999) + "...",
+              __html:
+                description.length > 999
+                  ? description.slice(0, 999) + "..."
+                  : description.slice(0, 999),
             }}
           />
           <a href={website} target="_blank" className="underline">
