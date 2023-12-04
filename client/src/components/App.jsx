@@ -8,7 +8,6 @@ import Library from "./Library";
 import Wishlist from "./Wishlist";
 import Footer from "./Footer";
 import Upcoming from "./Upcoming";
-import GameCarousel from "./GameCarousel";
 const WishContext = createContext();
 export { WishContext };
 const GameContext = createContext();
@@ -61,7 +60,6 @@ const App = () => {
       {showInfo && (
         <GameInfo gameInfo={gameInfo} handleCloseButton={handleCloseButton} />
       )}
-      <GameCarousel />
       <Footer />
     </div>
   );
