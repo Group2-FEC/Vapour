@@ -2,6 +2,9 @@ import express from "express";
 import pg from "pg";
 import dotenv from "dotenv";
 import axios from "axios";
+import path from "path";
+import { fileURLToPath } from "url";
+import { dirname, join } from "path";
 
 dotenv.config({ path: "../.env" });
 
@@ -16,6 +19,13 @@ await client.connect();
 const app = express();
 
 app.use(express.json());
+
+// Use fileURLToPath and dirname to get the current directory (__dirname equivalent)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Serve static files from the React app build directory
+app.use(express.static(join(__dirname, "public")));
 
 //CRUD routes
 app.get("/api/games", getRawgGames);

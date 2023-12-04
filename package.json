@@ -1,24 +1,27 @@
 {
-	"name": "full-stack-react",
-	"version": "1.0.0",
-	"type": "module",
-	"workspaces": [
-		"server",
-		"client"
-	],
-	"scripts": {
-		"dev": "concurrently \"npm:dev:*\"",
-		"dev:client": "npm run dev --workspace=client",
-		"dev:server": "npm run dev --workspace=server",
-		"lint": "prettier . --check"
-	},
-	"devDependencies": {
-		"concurrently": "^8.2.2",
-		"prettier": "^3.1.0"
-	},
-	"dependencies": {
-		"axios": "^1.6.2",
-		"dotenv": "^16.3.1",
-		"postgres": "^3.4.3"
-	}
+  "name": "full-stack-react",
+  "version": "1.0.0",
+  "type": "module",
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm:dev:*\"",
+    "dev:client": "npm run dev --workspace=client",
+    "dev:server": "npm run dev --workspace=server",
+    "lint": "prettier . --check",
+    "build": "npm run build --workspace=client && npm run postbuild",
+    "postbuild": "mkdir -p server/public && cp -r client/dist/* server/public/",
+    "start": "npm run start --workspace=server"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "prettier": "^3.1.0"
+  },
+  "dependencies": {
+    "axios": "^1.6.2",
+    "dotenv": "^16.3.1",
+    "postgres": "^3.4.3"
+  }
 }
