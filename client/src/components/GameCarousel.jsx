@@ -47,24 +47,24 @@ const GameCarousel = ({ handleShowSale }) => {
         </div>
         {/* Place your 3D models here */}
         <GameCaseComp
-          cover="src/assets/baldurs_gate.jpg"
-          spine="src/assets/baldursgatespine.png"
-          back="src/assets/baldursgate.mp4"
+          cover="assets/baldurs_gate.jpg"
+          spine="assets/baldursgatespine.png"
+          back="assets/baldursgate.mp4"
         />
         <GameCaseComp
-          cover="src/assets/gta4.jpg"
-          spine="src/assets/gta4Spine.jpg"
-          back="src/assets/gta4.mp4"
+          cover="assets/gta4.jpg"
+          spine="assets/gta4Spine.jpg"
+          back="assets/gta4.mp4"
         />
         <GameCaseComp
-          cover="src/assets/spiderman2.webp"
-          spine="src/assets/spidermanspine.png"
-          back="src/assets/spiderman.mp4"
+          cover="assets/spiderman2.webp"
+          spine="assets/spidermanspine.png"
+          back="assets/spiderman.mp4"
         />
         <GameCaseComp
-          cover="src/assets/starfield.jpeg"
-          spine="src/assets/starfieldspine.png"
-          back="src/assets/starfield.mp4"
+          cover="assets/starfield.jpeg"
+          spine="assets/starfieldspine.png"
+          back="assets/starfield.mp4"
         />
 
         {/* Absolute positioned sale and timer divs */}
