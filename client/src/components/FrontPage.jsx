@@ -1,11 +1,13 @@
 import axios from "axios";
 import { useEffect, useState, useContext } from "react";
+import GameCarousel from "./GameCarousel";
 import cart from "../assets/icons/cart.png";
 import { GameContext } from "./App";
 
 const FrontPage = () => {
   const [games, setGames] = useState([]);
   const getGameDetails = useContext(GameContext);
+  const [showSale, setShowSale] = useState(true);
 
   const generateRandomPrice = () => {
     return (Math.random() * (70 - 35) + 35).toFixed(2);
@@ -28,8 +30,13 @@ const FrontPage = () => {
     getGames();
   }, []);
 
+  const handleShowSale = () => {
+    setShowSale(false);
+  };
+
   return (
     <div className="relative">
+      {showSale && <GameCarousel handleShowSale={handleShowSale} />}
       <div className="w-5/6 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 rounded-b bg-gradient-to-r from-blue-200/40 to-blue-500/40 mb-10 p-2">
         {games.length !== 0 ? (
           games.map((game) => {
