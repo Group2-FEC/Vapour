@@ -1,27 +1,29 @@
 {
-	"name": "client",
-	"version": "1.0.0",
-	"type": "module",
-	"scripts": {
-		"dev": "vite serve",
-		"build": "vite build"
-	},
-	"devDependencies": {
-		"@vitejs/plugin-react-swc": "^3.5.0",
-		"autoprefixer": "^10.4.16",
-		"dotenv": "^16.3.1",
-		"postcss": "^8.4.31",
-		"tailwindcss": "^3.3.5",
-		"vite": "^5.0.2",
-		"vite-imagetools": "^6.2.4"
-	},
-	"dependencies": {
-		"@react-three/drei": "^9.88.17",
-		"@react-three/fiber": "^8.15.11",
-		"axios": "^1.6.2",
-		"react": "^18.2.0",
-		"react-dom": "^18.2.0",
-		"react-router-dom": "^6.20.0",
-		"three": "^0.158.0"
-	}
+  "name": "client",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite serve",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "autoprefixer": "^10.4.16",
+    "dotenv": "^16.3.1",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.3.5",
+    "vite": "^5.0.2",
+    "vite-imagetools": "^6.2.4",
+    "three": "^0.158.0",
+    "react-spring": "^9.7.3",
+    "@react-three/drei": "^9.88.17",
+    "@react-three/fiber": "^8.15.11",
+    "@react-three/postprocessing": "^2.15.11"
+  },
+  "dependencies": {
+    "axios": "^1.6.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.20.0"
+  }
 }
