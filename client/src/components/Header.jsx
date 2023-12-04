@@ -29,7 +29,7 @@ const Header = () => {
         src={logo}
         alt="logo"
         className="w-80 mx-auto drop-shadow"
-        style={{ marginBottom: "-18px" }}
+        style={{ marginBottom: "-30px" }}
       />
       <div
         id="storeLinks"
