@@ -27,10 +27,9 @@ const GameCaseComp = (props) => {
   return (
     <>
       <Canvas
+      className="mx-auto"
         style={{
-          margin: "auto",
-          width: "50vw",
-          height: "50vh",
+          height: "200px",
         }}
         camera={{ near: 0.1, far: 1000 }}
         onMouseOver={handleMouseOver}
@@ -43,7 +42,7 @@ const GameCaseComp = (props) => {
         <GameCase
           zPos={springProps.zPos}
           position-z={springProps.zPos}
-          scale={[10, 10, 10]}
+          scale={[12, 12, 12]}
           rotation={[0.1, 0.2, 0.1]}
           cover={gameCover}
           style={springProps}
@@ -54,7 +53,7 @@ const GameCaseComp = (props) => {
           <Bloom
             luminanceThreshold={0.3}
             luminanceSmoothing={0.9}
-            height={300}
+            height={200}
           />
         </EffectComposer>
       </Canvas>
