@@ -119,7 +119,7 @@ const Wishlist = () => {
   };
 
   return (
-    <div className="w-5/6 mx-auto flex-col gap-2 rounded-b bg-gradient-to-r from-blue-200/40 to-blue-500/40 mb-10 p-2 mb-10">
+    <div className="w-5/6 mx-auto flex-col gap-2 rounded-b bg-gradient-to-r from-blue-200/40 to-blue-500/40 p-2">
       <div className="flex md:flex-row flex-col mb-2 gap-2">
         {error && (
           <div
