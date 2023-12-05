@@ -2,3 +2,4 @@
 **/.env
 /client/dist
 /server/public
+.vercel
