@@ -87,7 +87,7 @@ const Wishlist = () => {
           released: firstGame.released,
         });
 
-        setWishlist([...wishlist, newWishlistItem.data]);
+        setWishlist([newWishlistItem.data, ...wishlist]);
         setSearchQuery("");
         playCoinSound();
       } else {
