@@ -33,10 +33,10 @@ const Header = () => {
       />
       <div
         id="storeLinks"
-        className="w-5/6 mx-auto flex sm:justify-between sm:flex-row flex-col sm:items-center items-end justify-center bg-gradient-to-r from-blue-400 to-blue-800 rounded-t p-2"
+        className="w-5/6 mx-auto flex sm:justify-between sm:flex-row flex-col sm:items-center items-end justify-center bg-gradient-to-r from-blue-400 to-blue-800 rounded-t p-2 gap-1"
       >
-        <div className="flex gap-2 text-white font-bold sm:gap-5 sm:order-first order-last">
-          <Navbar/>
+        <div className="flex gap-2 text-white font-bold text-sm sm:text-base sm:gap-5 sm:order-first order-last">
+          <Navbar />
         </div>
         <div id="userBar" className="flex gap-2">
           <img
