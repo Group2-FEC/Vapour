@@ -58,8 +58,6 @@ async function getRawgGameByName(req, res, next) {
     const response = await axios.get(
       `https://api.rawg.io/api/games?key=${API_KEY}&search=${name}`
     );
-
-    // Process the response and extract the required fields
     const filteredData = response.data.results.map((game) => ({
       id: game.id,
       name: game.name,
@@ -67,7 +65,6 @@ async function getRawgGameByName(req, res, next) {
       esrb_rating: game.esrb_rating ? game.esrb_rating.name : "Not Rated",
       rating: game.rating,
       released: game.released,
-      // Add more fields as needed
     }));
     res.send(filteredData);
   } catch (error) {
@@ -99,7 +96,9 @@ async function getLibraryGames(_, res, next) {
 
 async function getDbGames(_, res, next) {
   try {
-    const data = await client.query("SELECT * FROM videogames");
+    const data = await client.query(
+      "SELECT * FROM videogames ORDER BY id DESC"
+    );
     res.send(data.rows);
   } catch (error) {
     next(error);
