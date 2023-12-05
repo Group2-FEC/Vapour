@@ -24,7 +24,7 @@ const Header = () => {
   };
 
   return (
-    <header className="relative bg-slate-700/70 border-b border-gray-600">
+    <header className="relative bg-blue-950/30 border-b border-blue-900 shadow-xl">
       <img
         src={logo}
         alt="logo"

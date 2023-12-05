@@ -21,7 +21,7 @@ const Upcoming = () => {
 
   return (
     <div className="relative">
-      <div className="w-5/6 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 rounded-b bg-gradient-to-r from-blue-200/40 to-blue-500/40 mb-10 p-2">
+      <div className="w-5/6 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 rounded-b bg-gradient-to-r from-blue-200/40 to-blue-500/40 p-2">
         {upcoming.length !== 0 ? (
           upcoming.map((game) => {
             return (
