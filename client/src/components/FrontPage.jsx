@@ -37,7 +37,7 @@ const FrontPage = () => {
   return (
     <div className="relative">
       {showSale && <GameCarousel handleShowSale={handleShowSale} />}
-      <div className="w-5/6 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 rounded-b bg-gradient-to-r from-blue-200/40 to-blue-500/40 mb-10 p-2">
+      <div className="w-5/6 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 rounded-b bg-gradient-to-r from-blue-200/40 to-blue-500/40 p-2">
         {games.length !== 0 ? (
           games.map((game) => {
             return (

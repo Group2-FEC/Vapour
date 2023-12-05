@@ -49,12 +49,14 @@ const App = () => {
       <WishContext.Provider value={{ wishlist, setWishlist }}>
         <Header />
         <GameContext.Provider value={getGameDetails}>
+          <div className="bg-blue-700/20 drop-shadow-[0_10px_10px_black]">
           <Routes>
             <Route path="/" element={<FrontPage />}></Route>
             <Route path="/upcoming" element={<Upcoming />}></Route>
             <Route path="/library" element={<Library />}></Route>
             <Route path="/wishlist" element={<Wishlist />}></Route>
           </Routes>
+          </div>
         </GameContext.Provider>
       </WishContext.Provider>
       {showInfo && (
