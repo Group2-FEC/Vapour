@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useState, useContext } from "react";
-import coinSound from "../assets/MarioCoinSound.mp3";
 import { WishContext } from "./App";
 
 const Wishlist = () => {
@@ -8,12 +7,6 @@ const Wishlist = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [error, setError] = useState(false);
   const { wishlist, setWishlist } = useContext(WishContext);
-
-  const playCoinSound = () => {
-    const audio = new Audio(coinSound);
-    audio.volume = 0.4;
-    audio.play();
-  };
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -89,7 +82,6 @@ const Wishlist = () => {
 
         setWishlist([newWishlistItem.data, ...wishlist]);
         setSearchQuery("");
-        playCoinSound();
       } else {
         console.log("No games found.");
       }
