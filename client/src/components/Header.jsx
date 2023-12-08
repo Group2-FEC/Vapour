@@ -4,7 +4,6 @@ import userImage from "../assets/icons/user.png";
 import logo from "../assets/icons/logo.svg";
 import Navbar from "./Navbar";
 const Header = () => {
-
   return (
     <header className="relative bg-blue-950/30 border-b border-blue-900 shadow-xl">
       <img
@@ -26,11 +25,17 @@ const Header = () => {
             alt="announcement"
             className="sm:w-10 w-8 bg-blue-200 p-2 rounded shadow-lg cursor-pointer"
           />
-          <img
-            className="sm:w-10 w-8 bg-green-200 p-2 rounded shadow-lg cursor-pointer"
-            src={notification}
-            alt="notification"
-          />
+          <div className="relative">
+            <img
+              className="sm:w-10 w-8 bg-green-200 p-2 rounded shadow-lg cursor-pointer"
+              src={notification}
+              alt="notification"
+            />
+            <div
+              id="newNotifPlaceholder"
+              className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full m-0.5"
+            ></div>
+          </div>
           <div className="flex items-center gap-1">
             <img
               className="sm:w-10 w-8 bg-red-200 p-2 rounded shadow-lg cursor-pointer"
