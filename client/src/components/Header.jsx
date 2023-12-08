@@ -3,25 +3,7 @@ import announcement from "../assets/icons/announcement.png";
 import userImage from "../assets/icons/user.png";
 import logo from "../assets/icons/logo.svg";
 import Navbar from "./Navbar";
-import marioWarCry from "../assets/MarioYahoo.mp3";
-import marioMushroom from "../assets/MarioMushroomSound.mp3";
-import marioDeath from "../assets/MarioDeath.mp3";
 const Header = () => {
-  const playMarioWarCry = () => {
-    const audio = new Audio(marioWarCry);
-    audio.play();
-  };
-
-  const playMarioMushroom = () => {
-    const audio = new Audio(marioMushroom);
-    audio.volume = 0.3;
-    audio.play();
-  };
-
-  const playMarioDeath = () => {
-    const audio = new Audio(marioDeath);
-    audio.play();
-  };
 
   return (
     <header className="relative bg-blue-950/30 border-b border-blue-900 shadow-xl">
@@ -43,20 +25,17 @@ const Header = () => {
             src={announcement}
             alt="announcement"
             className="sm:w-10 w-8 bg-blue-200 p-2 rounded shadow-lg cursor-pointer"
-            onClick={playMarioWarCry}
           />
           <img
             className="sm:w-10 w-8 bg-green-200 p-2 rounded shadow-lg cursor-pointer"
             src={notification}
             alt="notification"
-            onClick={playMarioMushroom}
           />
           <div className="flex items-center gap-1">
             <img
               className="sm:w-10 w-8 bg-red-200 p-2 rounded shadow-lg cursor-pointer"
               src={userImage}
               alt="user"
-              onClick={playMarioDeath}
             />
           </div>
         </div>
