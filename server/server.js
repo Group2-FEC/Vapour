@@ -6,7 +6,7 @@ import axios from "axios";
 dotenv.config({ path: "../.env" });
 
 const { PORT, DATABASE_URL, API_KEY } = process.env;
-
+//Hello Scott
 const client = new pg.Client({
   connectionString: DATABASE_URL,
 });
